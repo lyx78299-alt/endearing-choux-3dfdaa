@@ -1,0 +1,13 @@
+{
+  "site_name": "Benchmark Tracker",
+  "report_date": "2026-08-27",
+  "updated_at": "2026-08-27T10:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "latest_html": "/index.html",
+  "archive_html": "/archive/2026-08-27.html",
+  "tracked_benchmarks": 12,
+  "watch_sources": 7,
+  "schedule": "daily 10:00",
+  "status": "snapshot",
+  "note": "This is the initial deployable snapshot. Future daily publishing should overwrite index.html, update latest.json, and append a dated archive file."
+}

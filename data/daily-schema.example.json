@@ -1,0 +1,38 @@
+{
+  "report_date": "YYYY-MM-DD",
+  "updated_at": "ISO-8601",
+  "timezone": "Asia/Shanghai",
+  "summary": {
+    "new_benchmarks": 0,
+    "heat_up": 0,
+    "priority_changed": 0
+  },
+  "featured": [
+    {
+      "name": "Benchmark name",
+      "rank": 1,
+      "change_vs_yesterday": "新增/上升/持平/下降",
+      "reason": "为什么今天重点推荐",
+      "next_bd_action": "下一步 BD 动作"
+    }
+  ],
+  "benchmarks": [
+    {
+      "name": "",
+      "direction": "",
+      "heat_signal": "",
+      "heat_delta": "",
+      "business_priority": "S/A/B/C",
+      "business_priority_delta": "持平 or A→S",
+      "product_priority": "S/A/B/C",
+      "product_priority_delta": "持平 or B→A",
+      "links": {
+        "paper": "",
+        "website": "",
+        "github": "",
+        "dataset": "",
+        "leaderboard": ""
+      }
+    }
+  ]
+}
