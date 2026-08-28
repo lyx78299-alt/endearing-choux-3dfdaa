@@ -3,330 +3,77 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>热门 Benchmark 跟踪</title>
+<title>热门 Benchmark 跟踪 · 历史报告</title>
 <style>
-:root{
- --bg:#f4f6fa;--panel:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f2;
- --blue:#2459d3;--navy:#0f172a;--soft:#edf3ff;--shadow:0 8px 28px rgba(23,32,51,.055);
- --hover-shadow:0 12px 32px rgba(23,32,51,.10)
-}
+:root{--bg:#f4f6fa;--panel:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f2;--blue:#2459d3;--navy:#0f172a}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;line-height:1.55}
-a{color:var(--blue);text-decoration:none;transition:opacity .18s ease,color .18s ease}
-a:hover{opacity:.78;text-decoration:none}
-button,input,select{font:inherit}
-.wrap{max-width:1380px;margin:auto}
-.top{background:#0f172a;color:#fff;padding:10px 22px}
-.nav{display:flex;align-items:center;gap:18px;font-size:12px}
-.nav strong{margin-right:auto}.nav a{color:#dbe5ff}
-.nav a:hover{color:#fff}
+body{margin:0;font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+a{text-decoration:none;color:var(--blue)}
+.top{background:var(--navy);color:#fff;padding:12px 22px}
+.wrap{max-width:1050px;margin:auto}
+.top-inner{display:flex;align-items:center;gap:18px} .top strong{margin-right:auto} .top a{color:#dbe5ff}
 .hero{background:linear-gradient(120deg,#17284f,#274684 62%,#315bd5);color:#fff;padding:38px 22px}
-.hero h1{margin:0 0 7px;font-size:32px}.hero p{margin:0;color:#d8e2ff;font-size:13px}
-.meta{display:flex;gap:7px;flex-wrap:wrap;margin-top:15px}
-.meta span{font-size:11px;padding:4px 8px;border:1px solid #ffffff30;border-radius:999px;background:#ffffff10}
-main{padding:18px 22px 50px}
-.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:16px;margin-bottom:14px;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-h2{margin:0 0 12px;font-size:18px}.subnote{font-size:11px;color:var(--muted);margin:-5px 0 12px}
-.stats{display:grid;grid-template-columns:repeat(5,minmax(120px,1fr));gap:10px}
-.stat{border:1px solid var(--line);border-radius:11px;padding:13px;background:#fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.stat .n{font-size:24px;font-weight:800}.stat .lab{font-size:11px;color:#667085;margin-top:2px}
-.feature-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
-.feature{border:1px solid var(--line);border-radius:12px;padding:13px;background:#fff;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.rank{font-weight:800;color:#98a2b3;font-size:21px}.feature h3{font-size:15px;margin:3px 0 5px}
-.feature p{font-size:11px;color:#475467;margin:8px 0}
-.tag{display:inline-block;background:#edf3ff;color:#2459d3;border-radius:999px;padding:4px 9px;font-size:10px;font-weight:700;transition:transform .18s ease,background .18s ease}
-.grade{display:inline-grid;place-items:center;min-width:29px;height:26px;border-radius:999px;font-size:11px;font-weight:800;transition:transform .18s ease}
-.S{background:#ffe9e5;color:#b42318}.A{background:#fff3df;color:#b54708}.B{background:#eaf2ff;color:#175cd3}.C{background:#f2f4f7;color:#475467}
-.tablewrap{overflow:auto;border-radius:10px}
-table{width:100%;border-collapse:collapse;min-width:1120px;font-size:11px}
-th,td{padding:10px;border-bottom:1px solid #edf0f5;vertical-align:top;text-align:left}
-th{background:#f8fafc;color:#475467;font-weight:700}
-tbody tr{transition:background .16s ease,transform .16s ease}
-.empty{padding:22px;text-align:center;color:#667085;background:#fafbfc;font-weight:600}
-.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
-input,select{border:1px solid #d0d5dd;border-radius:8px;padding:8px 9px;background:#fff;font-size:11px;transition:border-color .18s ease,box-shadow .18s ease}
-input{min-width:260px;flex:1}
-input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px rgba(36,89,211,.08)}
-.heat-list{display:grid;gap:9px}
-.heat-item{display:grid;grid-template-columns:190px 1fr;gap:12px;align-items:center;padding:4px 2px;border-radius:9px;transition:background .18s ease,transform .18s ease}
-.heat-name{font-size:11px;font-weight:600;text-align:right}
-.track{height:24px;background:#f0f3f8;border-radius:7px;overflow:hidden;position:relative;cursor:pointer;transform-origin:center;transition:transform .18s ease,box-shadow .18s ease,background .18s ease}
-.bar{height:100%;background:linear-gradient(90deg,#8aa7ff,#315bd5);border-radius:7px;min-width:2px;transition:filter .18s ease}
-.score{position:absolute;right:7px;top:3px;font-size:10px;font-weight:800;color:#172033}
-.track.selected{transform:scale(1.025);box-shadow:0 5px 18px rgba(49,91,213,.18);background:#e8eefc}
-.track.selected .bar{filter:saturate(1.15)}
-.heat-detail{margin-top:11px;padding:11px 13px;background:#f7f9ff;border:1px solid #e0e8ff;border-radius:10px;font-size:11px;color:#475467;min-height:42px}
-.method{font-size:10px;color:#667085;padding:9px 11px;background:#f8fafc;border-radius:9px;margin-top:10px}
-.project{background:#fff;border:1px solid #dfe5ef;border-radius:15px;margin:11px 0;box-shadow:0 5px 20px rgba(23,32,51,.045);overflow:hidden;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease}
-.project summary{list-style:none;cursor:pointer;padding:17px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:start;transition:background .18s ease}
-.project summary::-webkit-details-marker{display:none}
-.title-row{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-.title-row h3{margin:0;font-size:19px}.project-desc{font-size:12px;color:#526077;margin:7px 0 0}
-.priority{display:flex;gap:12px;text-align:center}.priority small{display:block;color:#667085;font-size:9px;margin-bottom:2px}
-.detail{border-top:1px solid var(--line);padding:16px}.linkbar{margin-bottom:11px}
-.btn{display:inline-block;background:#edf3ff;border:1px solid #d7e3ff;color:#2459d3;border-radius:8px;padding:6px 9px;font-size:10px;font-weight:700;margin:2px 4px 2px 0;transition:transform .16s ease,background .16s ease,box-shadow .16s ease}
-.fields{display:grid;grid-template-columns:190px 1fr;gap:8px 13px;font-size:11px}
-.key{font-weight:700;color:#475467}.value{color:#344054}
-.heat-chip{display:inline-block;border-radius:999px;background:#eef4ff;color:#175cd3;padding:3px 8px;font-size:10px;font-weight:700;transition:transform .16s ease}
-.archive-banner{display:none;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:10px 12px;font-size:11px;margin-bottom:14px}
-.sourceflag{font-size:10px;color:#667085;margin-top:8px}
-@media (hover:hover) and (pointer:fine){
- .panel:hover{box-shadow:var(--hover-shadow)}
- .stat:hover,.feature:hover{transform:translateY(-2px);box-shadow:0 7px 20px rgba(23,32,51,.08);border-color:#d7deea}
- .tag:hover,.grade:hover,.heat-chip:hover{transform:scale(1.05)}
- tbody tr:hover{background:#f7f9ff}
- .heat-item:hover{background:#fafbff}
- .track:hover{transform:scale(1.018);box-shadow:0 4px 14px rgba(49,91,213,.14)}
- .project:hover{transform:translateY(-1px);box-shadow:0 9px 26px rgba(23,32,51,.08);border-color:#d2dbea}
- .project summary:hover{background:#fbfcff}
- .btn:hover{transform:translateY(-1px);background:#e3ecff;box-shadow:0 4px 10px rgba(36,89,211,.10)}
-}
-@media(prefers-reduced-motion:reduce){
- *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
-}
-@media(max-width:950px){
- .stats{grid-template-columns:repeat(2,1fr)}.feature-grid{grid-template-columns:1fr 1fr}.heat-item{grid-template-columns:120px 1fr}
-}
-@media(max-width:620px){
- .stats,.feature-grid{grid-template-columns:1fr}.project summary{grid-template-columns:1fr}.priority{justify-content:flex-start}.fields{grid-template-columns:1fr}.heat-item{grid-template-columns:90px 1fr}.heat-name{font-size:9px}
+.hero h1{margin:0 0 8px;font-size:31px} .hero p{margin:0;color:#d8e2ff;font-size:13px}
+main{padding:22px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px}
+.report{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:15px 4px;border-bottom:1px solid var(--line)}
+.report:last-child{border-bottom:0}
+.report-title{font-weight:800;font-size:15px}
+.meta{margin-top:4px;font-size:12px;color:var(--muted)}
+.open{border:1px solid #d7e3ff;background:#edf3ff;color:#2459d3;padding:7px 11px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap}
+.notice{font-size:12px;color:#9a6700;background:#fff8db;border:1px solid #f5d97a;border-radius:9px;padding:10px 12px;margin-bottom:12px;display:none}
+@media(hover:hover) and (pointer:fine){
+ .report:hover{background:#f8faff}
+ .open:hover{background:#e3ecff}
 }
 </style>
 </head>
 <body>
-<div class="top"><div class="wrap nav">
+<div class="top"><div class="wrap top-inner">
 <strong>热门 Benchmark 跟踪</strong>
 <a href="/">最新报告</a>
 <a href="/archive/">历史报告</a>
-<a href="/data/latest.json" target="_blank">Latest JSON</a>
 </div></div>
 
 <header class="hero"><div class="wrap">
-<h1>热门 Benchmark 跟踪</h1>
-<p>固定监控指定 Benchmark，关注近 30 日热度、当日更新、数据生产方式、外包环节与商业机会。</p>
-<div class="meta" id="meta"></div>
+<h1>历史报告</h1>
+<p>查看每次 Benchmark 更新保留的历史快照。</p>
 </div></header>
 
-<main class="wrap">
-<div class="archive-banner" id="archiveBanner"></div>
-
-<section class="panel"><h2>今日概览</h2><div class="stats" id="stats"></div></section>
-
-<section class="panel"><h2>今日重点推荐</h2><div class="feature-grid" id="featured"></div></section>
-
-<section class="panel">
-<h2>近 30 日热度</h2>
-<div class="subnote">鼠标悬停可轻微放大；点击某一条可锁定查看该 Benchmark 的热度依据。</div>
-<div class="heat-list" id="heatChart"></div>
-<div class="heat-detail" id="heatDetail">点击任意热度柱查看具体依据。</div>
-<div class="method" id="heatMethod"></div>
-</section>
-
-<section class="panel">
-<h2>今日新增</h2>
-<div class="subnote">只记录当天发生明确官方更新的固定监控对象；“今天才补录”不算今日新增。</div>
-<div class="tablewrap">
-<table>
-<thead><tr><th>Benchmark</th><th>更新时间</th><th>更新类型</th><th>变化摘要</th><th>热度影响</th><th>访问</th></tr></thead>
-<tbody id="todayUpdates"></tbody>
-</table>
-</div>
-</section>
-
-<section class="panel">
-<h2>Benchmark 总览表</h2>
-<div class="controls">
-<input id="q" placeholder="搜索 Benchmark / 团队 / 方向…">
-<select id="dir"><option value="">全部研究方向</option></select>
-<select id="bp"><option value="">全部商机</option><option>S</option><option>A</option><option>B</option><option>C</option></select>
-<select id="pp"><option value="">全部产品化</option><option>S</option><option>A</option><option>B</option><option>C</option></select>
-</div>
-<div class="tablewrap">
-<table>
-<thead><tr><th>Benchmark</th><th>研究方向</th><th>最近更新时间</th><th>近30日热度</th><th>商机</th><th>产品化</th><th>团队联系方式</th><th>主要入口</th></tr></thead>
-<tbody id="tbody"></tbody>
-</table>
-</div>
-</section>
-
-<section>
-<h2 style="margin:18px 0 3px">详细项目卡</h2>
-<div class="subnote">点击卡片展开完整字段；保留白色卡片与蓝色研究方向标签。</div>
-<div id="details"></div>
-</section>
-
-<div class="sourceflag" id="sourceFlag"></div>
-</main>
+<main><div class="wrap">
+<div id="notice" class="notice"></div>
+<section class="panel"><div id="list"></div></section>
+</div></main>
 
 <script>
-const EMBEDDED_DATA = {"title": "热门 Benchmark 跟踪", "report_date": "2026-08-28", "updated_at": "2026-08-28T14:08:00+08:00", "timezone": "Asia/Shanghai", "heat_method": "近30日内部热度指数（0–100）：综合公开 Release/任务变化、Leaderboard/模型结果变化、GitHub/社区活跃和数据合作信号。当前为公开信号回溯评分；从 2026-08-28 起每日保存快照后，可进一步形成真实30日日序列。", "summary": {"benchmark_count": 12, "today_update_count": 0, "high_heat_count": 6, "business_s": 7, "product_s": 6}, "today_updates": [], "featured": [{"rank": 1, "name": "Pipette", "tag": "On-Device AI / Edge Benchmark / Hardware", "reason": "8月24日刚发布，端侧配置规模大，设备实验与批量跑测外包空间明确。", "business_priority": "S", "product_priority": "A"}, {"rank": 2, "name": "OSWorld 2.0", "tag": "Computer-Use Agent / Desktop / Long-Horizon", "reason": "8月已有版本 manifest 更新，环境+资产+轨迹的单条交付价值高。", "business_priority": "S", "product_priority": "S"}, {"rank": 3, "name": "Terminal-Bench 3", "tag": "Terminal Agent / CLI / General Computer Work", "reason": "仍在持续接受任务，任务工程、Docker 和 verifier 是直接数据需求。", "business_priority": "S", "product_priority": "S"}, {"rank": 4, "name": "AutomationBench", "tag": "Enterprise Agent / Automation / API Tool Use", "reason": "7月底仍有正式版本更新，企业工作流和确定性 verifier 与商业场景高度贴合。", "business_priority": "S", "product_priority": "S"}, {"rank": 5, "name": "JobBench", "tag": "Professional Agent / Occupational Workflow / Office", "reason": "职业专家+异构文件+rubric 的生产方式，非常适合专业数据供应商。", "business_priority": "S", "product_priority": "S"}], "benchmarks": [{"name": "AutomationBench", "alias": "Automation Bench", "description": "Zapier 的企业自动化 Agent Benchmark，测试 Agent 跨 CRM、邮箱、日历等工具完成端到端业务工作流。", "team": "Zapier", "direction": "Enterprise Agent / Automation / API Tool Use", "release_or_update": "v1.0.6（2026-07-31）", "heat_score_30d": 80, "heat_reason": "近30日内发布 v1.0.6，持续修正任务公平性、verifier 与官方运行结果。", "paper": "https://arxiv.org/abs/2604.18934", "website": "https://zapier.com/benchmarks", "github": "https://github.com/zapier/AutomationBench", "dataset": "https://github.com/zapier/AutomationBench", "leaderboard": "https://zapier.com/benchmarks", "contact": "Zapier Benchmark / GitHub Issues", "data_scale_structure": "约657个任务；47个隔离模拟工具；覆盖 Sales、Marketing、Operations、Support、Finance、HR；单条含业务指令、初始状态和确定性 end-state verifier。", "production_method": "真实业务流程抽象 + 人工任务设计 + 模拟 SaaS 环境 + 程序化验证。", "dependencies": "人工高；专家中高；环境高。", "outsourcing": "业务任务设计、规则梳理、模拟 CRM/邮件/日历数据、环境、reference end state、verifier、回归测试、QA。", "license_risk": "代码/数据/第三方 SaaS 资产许可需分别核验。", "service_opportunity": "非常适合切“企业流程任务+模拟环境+verifier”整包服务。", "productization": "可做金融、销售运营、客服、HR、采购等垂直 Automation Benchmark。", "poc": "20条中文企业自动化任务，交付初始状态、任务规则、目标状态、verifier 和3次回归。", "business_priority": "S", "product_priority": "S"}, {"name": "JobBench", "alias": "JobBench", "description": "面向真实白领职业工作流的 Agent Benchmark，任务来自人类希望委托给 AI 的工作，并用异构文件和细粒度 rubric 验收。", "team": "University of Washington 等多机构 / Job-Bench", "direction": "Professional Agent / Occupational Workflow / Office", "release_or_update": "论文 2026-05-25；公开数据与 eval repo 持续维护", "heat_score_30d": 68, "heat_reason": "近30日仍有公开数据和模型成绩使用活动，项目页、HF 数据集与 eval repo 已形成完整链路。", "paper": "https://arxiv.org/abs/2605.26329", "website": "https://job-bench.github.io/", "github": "https://github.com/Job-Bench/job-bench-eval", "dataset": "https://huggingface.co/datasets/JobBench/job-bench", "leaderboard": "https://job-bench.github.io/", "contact": "Yuetai Li — yuetaili@uw.edu", "data_scale_structure": "论文130个 agentic tasks、35个职业；每个任务为异构文件 workspace，平均35.6个二元 rubric；HF公开 main/easy split。", "production_method": "职业需求调研 + 专家任务构造 + 文件资产 + rubric + Agent执行 + 逐项验收。", "dependencies": "人工高；专家高；环境中。", "outsourcing": "职业专家访谈、任务设计、PDF/表格/数据库资产、reference deliverable、rubric、人工验收、错误归因、QA。", "license_risk": "任务文件、参考资料和模板可能有不同许可，商业使用需逐资产检查。", "service_opportunity": "专家供给、办公文件生产、rubric 与质检都适合外包。", "productization": "可做金融、医疗、法务、运营、人力、供应链等岗位工作委托 Benchmark。", "poc": "5个职业×5条任务；每条3–8个异构文件、参考交付物、20+ rubric 和验收记录。", "business_priority": "S", "product_priority": "S"}, {"name": "OSWorld 2.0", "alias": "OSWorld 2.0", "description": "长链真实桌面 Computer-Use Benchmark，评估 Agent 跨应用完成复杂任务，并对任务、资产、网站、镜像进行版本化。", "team": "XLang Lab / HKU 等", "direction": "Computer-Use Agent / Desktop / Long-Horizon", "release_or_update": "官方 manifest：osworld-v2-2026.08.08；108 tasks", "heat_score_30d": 87, "heat_reason": "近30日出现 2026.08.08 release manifest，固定 code/task/assets/website/provider image。", "paper": "https://arxiv.org/abs/2606.29537", "website": "https://osworld-v2.xlang.ai/", "github": "https://github.com/xlang-ai/OSWorld-V2", "dataset": "https://huggingface.co/datasets/xlangai/osworld_v2_tasks", "leaderboard": "https://osworld-v2.xlang.ai/", "contact": "yuanmengqi732@gmail.com；zzl0712@connect.hku.hk", "data_scale_structure": "108个长链任务；Python task files、gated assets、mocked websites、VM/Docker/AWS image、轨迹与 evaluator。", "production_method": "人工任务 + 资产/初始状态 + 桌面/网站环境 + trajectory + evaluator + 版本回归。", "dependencies": "人工高；专家中；环境极高。", "outsourcing": "任务扩写、资产、mock website、VM/Docker、轨迹、evaluator/verifier、回归、环境巡检。", "license_risk": "代码、gated 数据和第三方网页/应用资产需分别核验。", "service_opportunity": "环境、资产、轨迹、verifier 的组合交付价值高。", "productization": "可做 WPS/Office、医疗工作站、金融后台、政务桌面行业版。", "poc": "15条国产 Office+浏览器跨应用任务，含 VM、资产、mock web、轨迹和 verifier。", "business_priority": "S", "product_priority": "S"}, {"name": "Pipette", "alias": "Pipette", "description": "Liquid AI 的端侧 AI Benchmark，比较模型、量化、runtime、设备和上下文配置下的质量与实机性能。", "team": "Liquid AI / Artificial Analysis", "direction": "On-Device AI / Edge Benchmark / Hardware", "release_or_update": "2026-08-24 发布", "heat_score_30d": 94, "heat_reason": "8月24日刚发布，公开1000+配置、30+模型，并持续扩设备/runtime coverage。", "paper": "https://www.liquid.ai/blog/pipette-on-device-ai-benchmarking-by-liquid-ai", "website": "https://pipette.liquid.ai/", "github": "https://github.com/Liquid4All", "dataset": "https://pipette.liquid.ai/", "leaderboard": "https://pipette.liquid.ai/", "contact": "support@liquid.ai；Liquid AI Connect", "data_scale_structure": "1000+ model×quantization×runtime×device×context 配置；30+ models；覆盖 macOS/iOS/Windows/Android。", "production_method": "真实设备实验 + benchmark client 自动跑测 + 配置矩阵 + 重复实验 + 数据审核。", "dependencies": "人工中；专家高；环境极高。", "outsourcing": "设备实验室、设备池、runtime/量化适配、批量跑测、复测、结果 QA、跨设备回归。", "license_risk": "工具、结果数据和第三方模型许可需分开审查；竞争性产品建议自建数据与实验协议。", "service_opportunity": "适合“亚洲/国产设备实验室+批量端侧跑测+coverage扩充”。", "productization": "可做国产手机、AI PC、边缘盒子、车载设备性能库。", "poc": "3类设备×5模型×2量化，测 TTFT/TPS/E2E latency/peak RAM 并交付原始记录。", "business_priority": "S", "product_priority": "A"}, {"name": "SWE-bench", "alias": "SWE-bench", "description": "真实 GitHub issue 级软件工程 Agent Benchmark，让 Agent 修复真实代码问题，并用测试与 Docker 环境验证 patch。", "team": "Princeton / Stanford / SWE-bench 社区", "direction": "Software Engineering Agent / Coding", "release_or_update": "持续维护；Full / Verified / Multilingual / Multimodal", "heat_score_30d": 70, "heat_reason": "近30日无明确新 split，但仓库、leaderboard 与衍生生态持续活跃。", "paper": "https://www.swebench.com/", "website": "https://www.swebench.com/", "github": "https://github.com/SWE-bench/SWE-bench", "dataset": "https://huggingface.co/SWE-bench", "leaderboard": "https://www.swebench.com/", "contact": "carlosej@princeton.edu；johnby@stanford.edu", "data_scale_structure": "Full 2294、Verified 500、Multilingual 300、Multimodal 517；单条含 repo、issue、base commit、tests/gold patch 与 Docker。", "production_method": "真实 GitHub issue/PR 挖掘 + repo复现 + tests + Docker + 工程师 solvability review。", "dependencies": "人工高；专家极高；环境极高。", "outsourcing": "issue/PR筛选、repo/commit映射、Docker、test oracle、reference patch、工程师审核、多语言/多模态扩展。", "license_risk": "各底层 repo 许可证不同，代码/issue/patch 的训练和再分发需逐项目检查。", "service_opportunity": "适合多语言、行业软件和私有仓 benchmark 构建。", "productization": "可做企业私有代码、DevOps、数据工程、安全修复行业版。", "poc": "5个可商用开源repo×6条issue，共30条；交付Docker、tests、reference patch和双工程师复核。", "business_priority": "S", "product_priority": "S"}, {"name": "Terminal-Bench 3", "alias": "Terminal-Bench 3", "description": "Terminal-Bench 下一代高难 CLI Benchmark，持续征集现实、长链、可程序化验证的终端工作任务。", "team": "Stanford University / Laude Institute / Harbor Framework", "direction": "Terminal Agent / CLI / General Computer Work", "release_or_update": "持续建设；公开接受任务提交", "heat_score_30d": 85, "heat_reason": "近30日仍处高活跃建设期，公开仓有大量任务 PR，并持续接受新任务。", "paper": "https://arxiv.org/abs/2601.11868", "website": "https://www.tbench.ai/benchmarks/terminal-bench-3", "github": "https://github.com/harbor-framework/terminal-bench-3", "dataset": "https://github.com/harbor-framework/terminal-bench-3/tree/main/tasks", "leaderboard": "https://www.tbench.ai/benchmarks/terminal-bench-3", "contact": "GitHub Issues/PR；Discord #tb-task-proposals / #tb-3", "data_scale_structure": "任务由 instruction、容器环境、tests/verifier、oracle/reference solution、运行记录组成。", "production_method": "任务提案 + 环境实现 + oracle + automated checks + maintainer review + 迭代。", "dependencies": "人工高；专家高；环境极高。", "outsourcing": "任务 ideation、专家供给、Docker/VM、fixtures、oracle、tests/verifier、flaky排查、难度校准、review。", "license_risk": "框架/任务仓许可与第三方软件需分别核验；benchmark 数据不应直接用于训练。", "service_opportunity": "当前最明确的任务 engineering 商机之一。", "productization": "适合 DevOps、网络安全、数据库、金融、科研工具等垂直 terminal benchmark。", "poc": "10条高难任务，含Docker、oracle、tests、baseline与5次稳定性运行。", "business_priority": "S", "product_priority": "S"}, {"name": "Terminal-Bench Science", "alias": "Terminal-Bench Science", "description": "面向真实科学研究工作流的 Terminal Agent Benchmark，要求科学专家提供可复现、可验证的复杂科研任务。", "team": "Stanford University / Laude Institute / Harbor Framework", "direction": "Terminal Agent / AI4Science / Scientific Workflow", "release_or_update": "目标100+ tasks；8月处于 review / merge 阶段", "heat_score_30d": 78, "heat_reason": "近30日经历任务提交截止与集中 review，持续公开 proposal、PR 与 task dashboard。", "paper": "https://github.com/harbor-framework/terminal-bench-science", "website": "https://www.terminal-bench-science.ai/", "github": "https://github.com/harbor-framework/terminal-bench-science", "dataset": "https://github.com/harbor-framework/terminal-bench-science/tree/main/tasks", "leaderboard": "https://www.terminal-bench-science.ai/", "contact": "Steven Dillmann — stevendi@stanford.edu；Discord #tb-science", "data_scale_structure": "目标100+科研 workflow tasks；单条含科学输入、终端环境、reference solution、programmatic verifier、review信息。", "production_method": "领域专家提案 → Build → automated checks → domain/general review → final review。", "dependencies": "人工高；专家极高；环境高。", "outsourcing": "科研专家任务、实验数据、Docker、科学软件、reference solution、verifier、复现、三层QA。", "license_risk": "主仓 Apache-2.0；每个科学数据集、软件和资产需单独确认。", "service_opportunity": "适合“专家供给+任务工程+verifier+review”整包合作。", "productization": "可做药物研发、生物信息、材料、计算化学、工业仿真等 AI4Science 版本。", "poc": "2个科学方向×5条任务；含容器、数据、reference solution、verifier和双专家QA。", "business_priority": "S", "product_priority": "A"}, {"name": "AgentCIBench", "alias": "AgentCIBench", "description": "评估 Computer-Use Agent 是否遵守 contextual integrity 的隐私/安全 Benchmark，重点测过度分享、视觉共置与收件人错配。", "team": "UKP Lab / TU Darmstadt", "direction": "Computer-Use Safety / Privacy / Contextual Integrity", "release_or_update": "2026-06 发布；代码、数据、Leaderboard 已开放", "heat_score_30d": 40, "heat_reason": "近30日暂无明显新 release，但安全/隐私赛道稀缺，完整评测链仍具价值。", "paper": "https://arxiv.org/abs/2606.23189", "website": "https://ukplab.github.io/arxiv2026-agentcibench/", "github": "https://github.com/UKPLab/arxiv2026-agentcibench", "dataset": "https://huggingface.co/datasets/UKPLab/agentcibench", "leaderboard": "https://ukplab.github.io/arxiv2026-agentcibench/", "contact": "Anmol Goel — anmol.goel@tu-darmstadt.de", "data_scale_structure": "文本/state-grounded 场景 + 50条端到端 visual eval；含 scenario generation、OpenApps、Docker、评分脚本。", "production_method": "程序化 scenario generation + 合成 app 内容 + 人工隐私失效模式 + deterministic scoring。", "dependencies": "人工中高；专家中高；环境高。", "outsourcing": "隐私场景、合成账号/邮件/联系人、跨应用环境、红队QA、泄漏标签、scenario mutation、回归。", "license_risk": "代码 Apache-2.0；数据/scenario pool CC BY 4.0；需遵守 attribution 与 responsible use。", "service_opportunity": "可做企业 Agent 隐私/合规红队与回归评测。", "productization": "适合金融、医疗、HR、企业协同等 Contextual Integrity Benchmark。", "poc": "30条隐私场景，覆盖 overshare、wrong-recipient、co-location，交付 synthetic data 和 scorer。", "business_priority": "A", "product_priority": "A"}, {"name": "PPT-Eval", "alias": "PPT-Eval", "description": "评估 Agent 创建和编辑 PowerPoint 的 Benchmark，使用任务级 rubric 支持部分得分、无效修改惩罚和视觉质量评价。", "team": "Carnegie Mellon University / Microsoft / UMass Amherst 等", "direction": "Office Agent / PowerPoint / Computer-Use", "release_or_update": "2026-06-30 发布；120 tasks / 12 files", "heat_score_30d": 45, "heat_reason": "近30日暂无明显新 release，但 Office Agent 商业场景强，Task Explorer / Code / Leaderboard 持续可用。", "paper": "https://arxiv.org/abs/2606.31154", "website": "https://microsoft.github.io/ppteval/", "github": "https://github.com/microsoft/ppteval", "dataset": "https://microsoft.github.io/ppteval/", "leaderboard": "https://microsoft.github.io/ppteval/", "contact": "GitHub Issues/PR；论文作者团队", "data_scale_structure": "120个PowerPoint tasks、12个PPT文件；含源文件、任务目标、task-specific rubric、部分得分与视觉评价。", "production_method": "人工 Office 任务 + PPT 素材 + rubric + VLM/规则评分 + 人类判断校准。", "dependencies": "人工高；专家中；环境中高。", "outsourcing": "PPT/Excel/Word任务、Office文件、rubric、视觉QA、GUI轨迹、reference deliverable、人工评分。", "license_risk": "代码与PPT素材许可需分别核验；模板、图片、字体等第三方资产需要版权清单。", "service_opportunity": "Office Agent 易被企业理解和采购，适合扩到 Excel、Word、WPS。", "productization": "适合 Office-Bench / Excel-Bench / Word-Bench / WPS-Bench。", "poc": "PPT/Excel/Word各10条，提供源文件、目标状态、rubric和视觉检查项。", "business_priority": "A", "product_priority": "S"}, {"name": "TUA-Bench", "alias": "TUA-Bench", "description": "通用 Terminal-Use Agent Benchmark，覆盖文档编辑、邮件、实时网页信息和科研/工程工具。", "team": "Meta / Facebook Research 等作者团队", "direction": "Terminal-Use Agent / General Digital Workflow", "release_or_update": "2026-06-26 发布；120 real-world tasks", "heat_score_30d": 44, "heat_reason": "近30日无明显任务集 release；公开 leaderboard 与120个执行型任务仍具参考价值。", "paper": "https://arxiv.org/abs/2606.28480", "website": "https://tuabench.ai/", "github": "https://github.com/facebookresearch/TUA-Bench", "dataset": "https://github.com/facebookresearch/TUA-Bench/tree/main/tasks", "leaderboard": "https://tuabench.ai/", "contact": "GitHub Issues/PR；论文作者团队", "data_scale_structure": "120个execution-based tasks，5类任务；单条人工设计，配 deterministic setup script 与 execution scoring。", "production_method": "人工任务设计 + PhD专家共创 + real terminal + deterministic setup/scorer。", "dependencies": "人工高；专家中高；环境高。", "outsourcing": "任务扩写、专家共创、setup scripts、Docker/Podman、execution scorer、reference solution、回归。", "license_risk": "存在 non-commercial 使用风险，商业再售原数据需法务确认，建议自建。", "service_opportunity": "服务合作优于原数据转售，可提供新增任务和环境工程。", "productization": "方法可复制，但建议自建可商用 Terminal-Use 数据资产。", "poc": "10条通用terminal workflow，覆盖文档、邮件模拟、网页信息和科学工具。", "business_priority": "A", "product_priority": "B"}, {"name": "WindTunnel", "alias": "Wind Tunnel", "description": "比较 WebMCP、截图 Computer Use、DOM/Accessibility Tree 等浏览器 Agent 接口，同时测成功率、耗时、Token 和成本。", "team": "Nekuda AI", "direction": "Browser Agent / WebMCP / Interface Benchmark", "release_or_update": "Canonical run：2026-08-20", "heat_score_30d": 91, "heat_reason": "8月20日刚完成 canonical run：16 configurations×49 tasks×8 sites×3 attempts，近30日更新非常明确。", "paper": "https://github.com/nekuda-ai/WindTunnel", "website": "https://github.com/nekuda-ai/WindTunnel", "github": "https://github.com/nekuda-ai/WindTunnel", "dataset": "https://github.com/nekuda-ai/WindTunnel/tree/main/results", "leaderboard": "https://github.com/nekuda-ai/WindTunnel#results", "contact": "GitHub Issues/PR；Nekuda AI 官方渠道", "data_scale_structure": "49 benchmark tasks + 10 cost calibration tasks；8个自托管网站；canonical run 2352 attempts / 784 majority verdicts。", "production_method": "固定开源站点 + seeded state + 手工任务 + outcome-based scorer + transcript/run artifacts。", "dependencies": "人工中；专家中；环境极高。", "outsourcing": "网站Docker、seed fixtures、任务设计、WebMCP goldens、scoring predicates、跨接口回归、成本统计、异常复核。", "license_risk": "自有代码和上游网站License混合；商业产品需逐上游项目确认义务。", "service_opportunity": "适合 Browser Agent / MCP 环境构建、任务扩写和多接口回归。", "productization": "可做企业 Web Agent Regression Suite。", "poc": "CRM/电商/预约3站点×5任务，跑Screenshot+DOM+MCP，交付成功率/成本/时间对照。", "business_priority": "B", "product_priority": "A"}, {"name": "Hugging Face", "alias": "Hugging Face", "description": "按 Benchmark Hub / Leaderboard Infrastructure 监控：Hub 提供官方 Benchmark Dataset、Eval Results、社区 Leaderboard 和可编程 leaderboard API。", "team": "Hugging Face", "direction": "Benchmark Hub / Leaderboards / Evaluation Infrastructure", "release_or_update": "Leaderboards / Eval Results / Benchmark API 持续迭代", "heat_score_30d": 96, "heat_reason": "近30日模型、数据集与评测结果生态保持极高更新频率；Hub 支持官方 Benchmark Dataset 和 leaderboard API。", "paper": "https://huggingface.co/docs/leaderboards/index", "website": "https://huggingface.co/", "github": "https://github.com/huggingface", "dataset": "https://huggingface.co/datasets?other=benchmark", "leaderboard": "https://huggingface.co/docs/leaderboards/index", "contact": "Hugging Face 官方支持 / GitHub", "data_scale_structure": "不是单一 Benchmark；Hub 承载 official benchmark datasets、model eval results、community leaderboards，并可通过 API 枚举与读取排行榜。", "production_method": "Benchmark作者提交数据集/eval.yaml；模型仓提交 .eval_results；Hub聚合为 leaderboard。", "dependencies": "人工中；专家按 Benchmark 变化；环境中到高。", "outsourcing": "Benchmark dataset构建、eval.yaml、模型批测、结果规范化、Leaderboard backend、数据清洗、复现与QA。", "license_risk": "平台内每个 Dataset/Model/Space License 各不相同，商业使用需逐资源检查。", "service_opportunity": "适合做 Benchmark 上架、模型批测、Leaderboard维护和数据规范化服务。", "productization": "可把自有行业 Benchmark 发布为 HF Dataset + leaderboard。", "poc": "选1个自有Benchmark，整理dataset card + eval.yaml + 20个模型评测结果，形成可嵌入leaderboard。", "business_priority": "A", "product_priority": "A"}], "schema_version": 3};
+const FALLBACK = [{"date": "2026-08-27", "label": "2026-08-27（旧版存档）", "href": "/archive/2026-08-27.html", "format": "legacy-html"}, {"date": "2026-08-28", "label": "2026-08-28", "href": "/?date=2026-08-28", "data": "/data/archive/2026-08-28.json", "format": "json"}];
 const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-const A=(u,t)=>u?`<a class="btn" href="${esc(u)}" target="_blank" rel="noopener">${esc(t)} ↗</a>`:"";
-let R=EMBEDDED_DATA, source="页面内置新版数据";
-let selectedHeat=null;
 
-function valid(x){
- return x && x.schema_version>=3 && Array.isArray(x.benchmarks) && x.benchmarks.length===12;
-}
-
-async function chooseData(){
- const p=new URLSearchParams(location.search);
- const date=p.get("date");
- try{
-   const url=date?`/data/archive/${encodeURIComponent(date)}.json`:"/data/latest.json";
-   const res=await fetch(url,{cache:"no-store"});
-   if(res.ok){
-     const j=await res.json();
-     if(valid(j)){R=j;source=date?`历史快照 ${date}`:"data/latest.json";}
-   }
- }catch(e){}
- render();
- if(date){
-   const b=document.getElementById("archiveBanner");
-   b.style.display="block";
-   b.innerHTML=`当前正在查看历史报告：<b>${esc(date)}</b>　<a href="/">返回最新报告</a>`;
- }
-}
-
-function render(){
- document.title=`热门 Benchmark 跟踪 · ${R.report_date}`;
- document.getElementById('meta').innerHTML=[
-   `报告日期：${R.report_date}`,
-   `更新时间：${R.updated_at}`,
-   `时区：${R.timezone}`
- ].map(x=>`<span>${esc(x)}</span>`).join('');
-
- const s=R.summary;
- const stats=[
-   ['Benchmark 总数',s.benchmark_count],
-   ['今日新增',s.today_update_count],
-   ['近30日高热',s.high_heat_count],
-   ['商机 S',s.business_s],
-   ['产品化 S',s.product_s]
- ];
- document.getElementById('stats').innerHTML=stats.map(x=>`<div class="stat"><div class="n">${esc(x[1])}</div><div class="lab">${esc(x[0])}</div></div>`).join('');
-
- document.getElementById('featured').innerHTML=(R.featured||[]).map(x=>`
- <article class="feature">
-   <div class="rank">#${x.rank}</div>
-   <h3>${esc(x.name)}</h3>
-   <span class="tag">${esc(x.tag)}</span>
-   <p>${esc(x.reason)}</p>
-   <div>
-     <span class="grade ${x.business_priority}">${x.business_priority}</span> <span class="small">商机</span>
-     &nbsp;
-     <span class="grade ${x.product_priority}">${x.product_priority}</span> <span class="small">产品化</span>
-   </div>
- </article>`).join('');
-
- const hs=[...R.benchmarks].sort((a,b)=>b.heat_score_30d-a.heat_score_30d);
- document.getElementById('heatChart').innerHTML=hs.map((x,i)=>`
-   <div class="heat-item">
-     <div class="heat-name">${esc(x.alias||x.name)}</div>
-     <div class="track" tabindex="0" role="button" aria-label="${esc(x.alias||x.name)} 热度 ${x.heat_score_30d}" data-heat-index="${i}">
-       <div class="bar" style="width:${Math.max(2,Math.min(100,x.heat_score_30d))}%"></div>
-       <span class="score">${x.heat_score_30d}</span>
+function render(items){
+ const el=document.getElementById("list");
+ el.innerHTML=items.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(x=>{
+   const type=x.format==="legacy-html"?"旧版 HTML 快照":"JSON 历史快照";
+   const href=x.href || (x.date?`/?date=${encodeURIComponent(x.date)}`:"#");
+   return `<div class="report">
+     <div>
+       <div class="report-title">${esc(x.label||x.date)}</div>
+       <div class="meta">${esc(type)} · ${esc(x.date||"")}</div>
      </div>
-   </div>`).join('');
- document.getElementById('heatMethod').textContent=R.heat_method;
- bindHeat(hs);
-
- const tu=document.getElementById('todayUpdates');
- tu.innerHTML=(R.today_updates&&R.today_updates.length)
-  ?R.today_updates.map(x=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.time)}</td><td>${esc(x.type)}</td><td>${esc(x.summary)}</td><td>${esc(x.impact)}</td><td>${A(x.url,'访问')}</td></tr>`).join('')
-  :`<tr><td colspan="6"><div class="empty">当日无新增</div></td></tr>`;
-
- const dirs=[...new Set(R.benchmarks.map(x=>x.direction))].sort();
- document.getElementById('dir').innerHTML='<option value="">全部研究方向</option>'+dirs.map(x=>`<option>${esc(x)}</option>`).join('');
- renderRows();
-
- const fields=[
-  ['description','简介'],['team','团队 / 机构'],['direction','研究方向'],
-  ['release_or_update','发布时间 / 最近更新时间'],['heat_score_30d','近30日热度指数'],
-  ['heat_reason','热度依据'],['contact','团队联系方式'],
-  ['data_scale_structure','数据规模与结构'],['production_method','数据生产方式'],
-  ['dependencies','人工 / 专家 / 环境搭建依赖'],['outsourcing','可外包的数据生产或质检环节'],
-  ['license_risk','License 与商业使用风险'],['service_opportunity','数据处理服务商机判断'],
-  ['productization','数据产品化判断'],['poc','POC 建议']
- ];
-
- document.getElementById('details').innerHTML=R.benchmarks.map(x=>`
- <details class="project">
-  <summary>
-   <div>
-    <div class="title-row"><h3>${esc(x.alias||x.name)}</h3><span class="tag">${esc(x.direction)}</span></div>
-    <p class="project-desc">${esc(x.description)}</p>
-   </div>
-   <div class="priority">
-    <div><small>商机</small><span class="grade ${x.business_priority}">${x.business_priority}</span></div>
-    <div><small>产品化</small><span class="grade ${x.product_priority}">${x.product_priority}</span></div>
-   </div>
-  </summary>
-  <div class="detail">
-   <div class="linkbar">${A(x.paper,'论文')}${A(x.website,'官网')}${A(x.github,'GitHub')}${A(x.dataset,'数据集')}${A(x.leaderboard,'Leaderboard')}</div>
-   <div class="fields">
-    ${fields.map(([k,n])=>`<div class="key">${n}</div><div class="value">${k==='heat_score_30d'?`<span class="heat-chip">${x[k]}/100</span>`:esc(x[k])}</div>`).join('')}
-    <div class="key">商机优先级</div><div><span class="grade ${x.business_priority}">${x.business_priority}</span></div>
-    <div class="key">数据产品化优先级</div><div><span class="grade ${x.product_priority}">${x.product_priority}</span></div>
-   </div>
-  </div>
- </details>`).join('');
-
- document.getElementById('sourceFlag').textContent=`当前数据源：${source}`;
+     <a class="open" href="${esc(href)}">打开报告</a>
+   </div>`;
+ }).join("");
 }
 
-function bindHeat(items){
- const els=[...document.querySelectorAll('.track[data-heat-index]')];
- const detail=document.getElementById('heatDetail');
- function select(i){
-   selectedHeat=i;
-   els.forEach((el,j)=>el.classList.toggle('selected',j===i));
-   const x=items[i];
-   detail.innerHTML=`<b>${esc(x.alias||x.name)}</b>　热度 <b>${x.heat_score_30d}/100</b><br>${esc(x.heat_reason)}`;
- }
- els.forEach((el,i)=>{
-   el.addEventListener('click',()=>select(i));
-   el.addEventListener('keydown',e=>{
-     if(e.key==='Enter'||e.key===' '){e.preventDefault();select(i)}
-   });
-   el.addEventListener('mouseenter',()=>{
-     if(selectedHeat===null){
-       const x=items[i];
-       detail.innerHTML=`<b>${esc(x.alias||x.name)}</b>　热度 <b>${x.heat_score_30d}/100</b><br>${esc(x.heat_reason)}`;
-     }
-   });
-   el.addEventListener('mouseleave',()=>{
-     if(selectedHeat===null)detail.textContent='点击任意热度柱查看具体依据。';
-   });
+render(FALLBACK);
+
+fetch("/data/history.json?ts="+Date.now(), {cache:"no-store"})
+ .then(r=>{if(!r.ok) throw new Error("HTTP "+r.status); return r.json();})
+ .then(items=>{if(Array.isArray(items)&&items.length) render(items);})
+ .catch(err=>{
+   const n=document.getElementById("notice");
+   n.style.display="block";
+   n.textContent="当前使用页面内置历史记录；data/history.json 暂未加载成功。";
  });
-}
-
-function renderRows(){
- const q=document.getElementById('q').value.toLowerCase(),
-       d=document.getElementById('dir').value,
-       bp=document.getElementById('bp').value,
-       pp=document.getElementById('pp').value;
- const xs=R.benchmarks.filter(x=>
-   (!q||JSON.stringify(x).toLowerCase().includes(q)) &&
-   (!d||x.direction===d) &&
-   (!bp||x.business_priority===bp) &&
-   (!pp||x.product_priority===pp)
- );
- document.getElementById('tbody').innerHTML=xs.map(x=>`
- <tr>
-  <td><b>${esc(x.alias||x.name)}</b></td>
-  <td><span class="tag">${esc(x.direction)}</span></td>
-  <td>${esc(x.release_or_update)}</td>
-  <td><span class="heat-chip">${x.heat_score_30d}/100</span></td>
-  <td><span class="grade ${x.business_priority}">${x.business_priority}</span></td>
-  <td><span class="grade ${x.product_priority}">${x.product_priority}</span></td>
-  <td>${esc(x.contact)}</td>
-  <td>${A(x.website,'官网')}${A(x.github,'GitHub')}</td>
- </tr>`).join('');
-}
-
-['q','dir','bp','pp'].forEach(id=>document.getElementById(id).addEventListener('input',()=>renderRows()));
-chooseData();
 </script>
 </body>
 </html>
