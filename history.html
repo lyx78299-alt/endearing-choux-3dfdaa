@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>热门 Benchmark 跟踪 · 历史报告</title>
+<style>
+:root{--bg:#f4f6fa;--panel:#fff;--ink:#172033;--muted:#667085;--line:#e5e9f2;--blue:#2459d3;--navy:#0f172a}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif}
+a{text-decoration:none;color:var(--blue)}
+.wrap{max-width:1080px;margin:auto}
+.top{background:var(--navy);color:#fff;padding:11px 22px}
+.nav{display:flex;align-items:center;gap:18px;font-size:12px}
+.nav strong{margin-right:auto}.nav a{color:#dbe5ff}
+.hero{background:linear-gradient(120deg,#17284f,#274684 62%,#315bd5);color:#fff;padding:40px 22px}
+.hero h1{margin:0 0 8px;font-size:32px}.hero p{margin:0;color:#d8e2ff;font-size:13px}
+main{padding:22px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:15px;padding:18px;box-shadow:0 8px 28px rgba(23,32,51,.055)}
+.report{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 6px;border-bottom:1px solid var(--line);transition:transform .18s ease,background .18s ease}
+.report:last-child{border-bottom:0}
+.report-title{font-weight:800;font-size:16px}.meta{font-size:12px;color:var(--muted);margin-top:4px}
+.open{display:inline-block;background:#edf3ff;border:1px solid #d7e3ff;color:var(--blue);padding:7px 12px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap;transition:.18s}
+.empty{padding:26px;text-align:center;color:var(--muted)}
+@media(hover:hover) and (pointer:fine){
+  .report:hover{background:#f8faff;transform:translateX(2px)}
+  .open:hover{background:#e3ecff;transform:translateY(-1px)}
+}
+@media(max-width:640px){.report{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap nav">
+<strong>热门 Benchmark 跟踪</strong>
+<a href="./">最新报告</a>
+<a href="./history.html">历史报告</a>
+<a href="./data/latest.json" target="_blank">Latest JSON</a>
+</div></div>
+
+<header class="hero"><div class="wrap">
+<h1>历史报告</h1>
+<p>查看每次 Benchmark 更新保留的历史快照。</p>
+</div></header>
+
+<main><div class="wrap">
+<section class="panel"><div id="list" class="empty">正在加载历史报告…</div></section>
+</div></main>
+
+<script>
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+
+fetch('./data/history.json',{cache:'no-store'})
+  .then(r=>{if(!r.ok)throw new Error('history.json 加载失败'); return r.json();})
+  .then(items=>{
+    const el=document.getElementById('list');
+    if(!Array.isArray(items)||!items.length){
+      el.className='empty';
+      el.textContent='暂无历史报告';
+      return;
+    }
+    el.className='';
+    el.innerHTML=items.slice().sort((a,b)=>String(b.date).localeCompare(String(a.date))).map(x=>`
+      <div class="report">
+        <div>
+          <div class="report-title">${esc(x.label||x.date)}</div>
+          <div class="meta">${esc(x.date)} · JSON 历史快照</div>
+        </div>
+        <a class="open" href="${esc(x.href||`./?date=${encodeURIComponent(x.date)}`)}">打开报告</a>
+      </div>`).join('');
+  })
+  .catch(err=>{
+    const el=document.getElementById('list');
+    el.className='empty';
+    el.textContent='历史报告加载失败，请确认 data/history.json 已上传。';
+  });
+</script>
+</body>
+</html>

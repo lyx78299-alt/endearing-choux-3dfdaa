@@ -1,0 +1,23 @@
+GitHub Pages 历史报告版上传路径：
+
+根目录：
+- index.html            覆盖
+- history.html          新增
+
+data/：
+- latest.json           覆盖
+- history.json          新增/覆盖
+
+data/archive/：
+- 2026-08-28.json       新增
+- 2026-08-31.json       新增
+
+部署后：
+最新报告：
+https://lyx78299-alt.github.io/endearing-choux-3dfdaa/
+
+历史报告：
+https://lyx78299-alt.github.io/endearing-choux-3dfdaa/history.html
+
+历史详情示例：
+https://lyx78299-alt.github.io/endearing-choux-3dfdaa/?date=2026-08-31

@@ -84,6 +84,10 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 @media(prefers-reduced-motion:reduce){
  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
 }
+
+.history-banner{display:none;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:10px 12px;font-size:11px;margin-bottom:14px}
+.history-banner a{color:#9a3412;font-weight:700}
+
 @media(max-width:950px){
  .stats{grid-template-columns:repeat(2,1fr)}.feature-grid{grid-template-columns:1fr 1fr}.heat-item{grid-template-columns:120px 1fr}
 }
@@ -96,6 +100,7 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 <div class="top"><div class="wrap nav">
 <strong>热门 Benchmark 跟踪</strong>
 <a href="./">最新报告</a>
+<a href="./history.html">历史报告</a>
 <a href="./data/latest.json" target="_blank">Latest JSON</a>
 </div></div>
 
@@ -106,6 +111,7 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 </div></header>
 
 <main class="wrap">
+<div id="historyBanner" class="history-banner"></div>
 <section class="panel"><h2>今日概览</h2><div class="stats" id="stats"></div></section>
 
 <section class="panel"><h2>今日重点推荐</h2><div class="feature-grid" id="featured"></div></section>
@@ -166,14 +172,24 @@ function valid(x){
 }
 
 async function chooseData(){
+  const params = new URLSearchParams(window.location.search);
+  const date = params.get('date');
+  const url = date ? `./data/archive/${encodeURIComponent(date)}.json` : './data/latest.json';
   try{
-    const res=await fetch('./data/latest.json',{cache:'no-store'});
+    const res=await fetch(url,{cache:'no-store'});
     if(res.ok){
       const j=await res.json();
-      if(valid(j)){R=j;source="data/latest.json";}
+      if(valid(j)){R=j;source=date?`历史快照 ${date}`:"data/latest.json";}
     }
   }catch(e){}
   render();
+  if(date){
+    const banner=document.getElementById('historyBanner');
+    if(banner){
+      banner.style.display='block';
+      banner.innerHTML=`当前正在查看历史报告：<b>${esc(date)}</b>　<a href="./">返回最新报告</a>`;
+    }
+  }
 }
 
 function render(){
