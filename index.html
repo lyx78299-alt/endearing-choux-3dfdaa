@@ -69,7 +69,6 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 .fields{display:grid;grid-template-columns:190px 1fr;gap:8px 13px;font-size:11px}
 .key{font-weight:700;color:#475467}.value{color:#344054}
 .heat-chip{display:inline-block;border-radius:999px;background:#eef4ff;color:#175cd3;padding:3px 8px;font-size:10px;font-weight:700;transition:transform .16s ease}
-.archive-banner{display:none;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:10px;padding:10px 12px;font-size:11px;margin-bottom:14px}
 .sourceflag{font-size:10px;color:#667085;margin-top:8px}
 @media (hover:hover) and (pointer:fine){
  .panel:hover{box-shadow:var(--hover-shadow)}
@@ -97,7 +96,6 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 <div class="top"><div class="wrap nav">
 <strong>热门 Benchmark 跟踪</strong>
 <a href="/">最新报告</a>
-<a href="/archive/">历史报告</a>
 <a href="/data/latest.json" target="_blank">Latest JSON</a>
 </div></div>
 
@@ -108,8 +106,6 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 </div></header>
 
 <main class="wrap">
-<div class="archive-banner" id="archiveBanner"></div>
-
 <section class="panel"><h2>今日概览</h2><div class="stats" id="stats"></div></section>
 
 <section class="panel"><h2>今日重点推荐</h2><div class="feature-grid" id="featured"></div></section>
@@ -170,22 +166,14 @@ function valid(x){
 }
 
 async function chooseData(){
- const p=new URLSearchParams(location.search);
- const date=p.get("date");
- try{
-   const url=date?`/data/archive/${encodeURIComponent(date)}.json`:"/data/latest.json";
-   const res=await fetch(url,{cache:"no-store"});
-   if(res.ok){
-     const j=await res.json();
-     if(valid(j)){R=j;source=date?`历史快照 ${date}`:"data/latest.json";}
-   }
- }catch(e){}
- render();
- if(date){
-   const b=document.getElementById("archiveBanner");
-   b.style.display="block";
-   b.innerHTML=`当前正在查看历史报告：<b>${esc(date)}</b>　<a href="/">返回最新报告</a>`;
- }
+  try{
+    const res=await fetch('/data/latest.json',{cache:'no-store'});
+    if(res.ok){
+      const j=await res.json();
+      if(valid(j)){R=j;source="data/latest.json";}
+    }
+  }catch(e){}
+  render();
 }
 
 function render(){
