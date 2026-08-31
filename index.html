@@ -125,8 +125,8 @@ input:focus,select:focus{outline:none;border-color:#8aa7ff;box-shadow:0 0 0 3px 
 </section>
 
 <section class="panel">
-<h2>今日新增</h2>
-<div class="subnote">只记录当天发生明确官方更新的固定监控对象；“今天才补录”不算今日新增。</div>
+<h2>这 2 天内新增</h2>
+<div class="subnote">只记录当天发生明确官方更新的固定监控对象；“今天才补录”不算这 2 天内新增。</div>
 <div class="tablewrap">
 <table>
 <thead><tr><th>Benchmark</th><th>更新时间</th><th>更新类型</th><th>变化摘要</th><th>热度影响</th><th>访问</th></tr></thead>
@@ -203,7 +203,7 @@ function render(){
  const s=R.summary;
  const stats=[
    ['Benchmark 总数',s.benchmark_count],
-   ['今日新增',s.today_update_count],
+   ['这 2 天内新增',s.today_update_count],
    ['近30日高热',s.high_heat_count],
    ['商机 S',s.business_s],
    ['产品化 S',s.product_s]
@@ -238,7 +238,7 @@ function render(){
  const tu=document.getElementById('todayUpdates');
  tu.innerHTML=(R.today_updates&&R.today_updates.length)
   ?R.today_updates.map(x=>`<tr><td><b>${esc(x.name)}</b></td><td>${esc(x.time)}</td><td>${esc(x.type)}</td><td>${esc(x.summary)}</td><td>${esc(x.impact)}</td><td>${A(x.url,'访问')}</td></tr>`).join('')
-  :`<tr><td colspan="6"><div class="empty">当日无新增</div></td></tr>`;
+  :`<tr><td colspan="6"><div class="empty">近 2 天无新增</div></td></tr>`;
 
  const dirs=[...new Set(R.benchmarks.map(x=>x.direction))].sort();
  document.getElementById('dir').innerHTML='<option value="">全部研究方向</option>'+dirs.map(x=>`<option>${esc(x)}</option>`).join('');
