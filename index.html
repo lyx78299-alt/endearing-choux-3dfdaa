@@ -179,7 +179,7 @@ async function chooseData(){
     const res=await fetch(url,{cache:'no-store'});
     if(res.ok){
       const j=await res.json();
-      if(valid(j)){R=j;source=date?`历史快照 ${date}`:"data/latest.json";}
+      if(valid(j) && j.benchmarks.length >= EMBEDDED_DATA.benchmarks.length){R=j;source=date?`历史快照 ${date}`:"data/latest.json";}
     }
   }catch(e){}
   render();
