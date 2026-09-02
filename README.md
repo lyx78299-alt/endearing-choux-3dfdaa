@@ -1,50 +1,123 @@
-# Benchmark Tracker
+# 热门 Benchmark 跟踪
 
-一个可直接部署到 Netlify 的静态站点骨架。
+一个面向 AI Agent / Benchmark 的静态跟踪页面，固定监控指定 Benchmark，关注近 30 日热度、3 天内新增、数据生产方式、外包环节与商业机会。
 
-## 目录
+## 在线页面
 
-- `index.html`：固定首页，始终展示最新报告
-- `archive/YYYY-MM-DD.html`：每日历史快照
-- `archive/index.html`：历史归档入口
-- `data/latest.json`：最新机器可读数据
-- `data/history.json`：历史索引
-- `data/daily-schema.example.json`：每日 JSON 建议结构
-- `scripts/publish_daily.py`：把当天 HTML/JSON 发布到固定目录的辅助脚本
-- `netlify.toml`：Netlify 静态站点配置，最新页禁用缓存
+- 网站：https://lyx78299-alt.github.io/endearing-choux-3dfdaa/
+- GitHub：https://github.com/lyx78299-alt/endearing-choux-3dfdaa
 
-## 首次部署到 Netlify
+## 当前版本
 
-1. 解压本目录。
-2. 登录 Netlify。
-3. 选择 **Add new site → Deploy manually**。
-4. 将整个 `benchmark-tracker-site` 文件夹拖入 Netlify Drop。
-5. 部署完成后会得到固定网址，例如 `https://xxx.netlify.app/`。
-6. 把该网址发给同事即可共同查看。
+当前页面采用静态 HTML + JSON 数据结构：
 
-## 推荐的真正自动更新架构
-
-最稳妥的是：
-
-`每日数据生成 → 写入 GitHub 仓库 → Netlify 自动部署`
-
-Netlify 连接 GitHub 后，每次仓库里的 `index.html / data/latest.json / archive/...` 更新，网站都会自动发布，无需手工拖文件。
-
-要让 ChatGPT 每日任务自动完成“写入 GitHub”，还需要在 ChatGPT 侧连接一个具有仓库写权限的 GitHub 工具/连接器。当前会话环境没有可用的 GitHub/Netlify 写入连接，因此本包先提供可部署站点和标准发布结构。
-
-## 每日文件更新规则
-
-每天 10:00 的报告完成后，应：
-
-- 覆盖 `index.html`
-- 覆盖 `data/latest.json`
-- 新增 `archive/YYYY-MM-DD.html`
-- 更新 `data/history.json`
-
-可使用：
-
-```bash
-python scripts/publish_daily.py todays-report.html todays-data.json
+```text
+/
+├── index.html              # 固定首页 / 最新报告
+├── history.html            # 历史报告入口
+├── data/
+│   ├── latest.json         # 最新机器可读数据
+│   └── archive/            # 历史快照
+└── README.md
 ```
 
-然后提交/推送到 GitHub，Netlify 会自动部署。
+`index.html` 负责页面展示；`data/latest.json` 保存最新结构化数据；历史报告按日期保存到 `data/archive/`。
+
+## 更新频率
+
+本项目按 **每 3 天更新一次** 的节奏维护。
+
+- **更新周期：每 3 天一次**
+- **更新时间：北京时间 10:00**
+- **时区：Asia/Shanghai（UTC+8）**
+- 更新时同步刷新最新报告与对应数据快照。
+- 历史报告保留在 `data/archive/` 中，便于回溯 Benchmark 的变化。
+
+### “3天内新增”定义
+
+页面中的 **“3天内新增”** 指：
+
+> 在最近 3 天观察窗口内，固定监控的 Benchmark 发生了明确、可验证的官方更新。
+
+例如：
+
+- 官方发布新版本
+- 官方新增 / 删除 / 修改任务
+- 官方更新数据集或评测配置
+- 官方更新 Leaderboard / 评测结果机制
+- 官方仓库发生与 Benchmark 本身直接相关的重要更新
+
+以下情况不计入“3天内新增”：
+
+- 只是今天才被本项目补录
+- 只有第三方文章提及，但 Benchmark 本身没有明确更新
+- 与 Benchmark 无直接关系的外围讨论
+- 无法验证时间或来源的传闻
+
+## 页面结构
+
+### 1. 今日概览
+
+展示当前监控 Benchmark 总数，以及：
+
+- 3天内新增
+- 近30日高热
+- 商机 S
+- 产品化 S
+
+### 2. 今日重点推荐
+
+根据近期更新、热度、数据生产难度、商业机会和产品化潜力，对重点 Benchmark 做排序推荐。
+
+### 3. 近30日热度
+
+使用内部热度指数，对最近 30 天公开信号进行综合判断，包括官方 Release / 任务变化、Leaderboard / 模型结果变化、GitHub / 社区活跃度和数据合作与生产信号。
+
+当前热度指数主要用于横向比较，不等同于官方排名。
+
+### 4. 3天内新增
+
+只展示最近 3 天内发生明确官方更新的固定监控对象。字段包括 Benchmark、更新时间、更新类型、变化摘要、热度影响和访问入口。
+
+### 5. Benchmark 总览表
+
+支持按 Benchmark / 团队 / 研究方向搜索，以及研究方向、商机优先级、产品化优先级筛选。
+
+### 6. 详细项目卡
+
+每个 Benchmark 保留简介、团队 / 机构、研究方向、最近更新时间、近30日热度、数据规模与结构、数据生产方式、人工 / 专家 / 环境依赖、可外包的数据生产或质检环节、License 风险、数据处理服务商机、数据产品化判断和 POC 建议。
+
+## 数据更新原则
+
+数据更新优先采用 Benchmark 官方来源，包括官方官网、GitHub / 代码仓库、数据集、论文 / 技术报告和 Leaderboard / Release。
+
+商业机会、外包环节和产品化判断属于分析字段，会结合公开信息进行判断。
+
+## 数据与页面关系
+
+`index.html` 是固定首页，负责展示最新报告。
+
+`data/latest.json` 是最新机器可读数据。更新时应确保页面与 JSON 的 Benchmark 数量、更新时间、3天内新增记录和历史快照保持一致。
+
+历史报告使用日期作为快照标识，例如：
+
+```text
+data/archive/2026-09-02.json
+```
+
+## 维护节奏
+
+每 3 天：
+
+1. 检查固定 Benchmark 是否有官方更新
+2. 更新 Benchmark 的最近更新时间
+3. 更新 3 天内新增列表
+4. 更新近30日热度判断
+5. 更新重点推荐
+6. 更新商业机会 / 产品化判断
+7. 写入 `data/latest.json`
+8. 保存对应历史快照
+9. 更新 `index.html`
+10. 检查 GitHub Pages 页面是否正常
+
+**固定更新时间：每 3 天一次，北京时间上午 10:00。**
