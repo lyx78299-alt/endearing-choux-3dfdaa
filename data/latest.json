@@ -1,112 +1,88 @@
 {
   "title": "热门 Benchmark 跟踪",
-  "report_date": "2026-09-21",
-  "updated_at": "2026-09-21T10:00:00+08:00",
+  "report_date": "2026-10-09",
+  "updated_at": "2026-10-09T16:15:30+08:00",
   "timezone": "Asia/Shanghai",
-  "heat_method": "近30日内部热度指数（0–100）：综合近30日官方 Release/任务变化、Leaderboard/模型结果变化、GitHub/社区活跃度及数据合作/贡献信号。分值用于内部横向跟踪，不等同于官方排名。",
+  "heat_method": "近30日内部跟踪指数（0–100，非官方热度或排名）：按已核验的官方任务、评测协议、环境、榜单与数据更新作定性评分；≥80为重点跟踪。无日期的当前页面状态不视为近7天事件；官网未显示日期或无法完整读取时明确说明。商机、外包环节、产品化与POC均为服务商分析建议，不代表团队已公开采购需求。",
   "summary": {
     "benchmark_count": 19,
-    "today_update_count": 7,
-    "high_heat_count": 14,
+    "today_update_count": 4,
+    "high_heat_count": 9,
     "business_s": 13,
     "product_s": 11
   },
   "today_updates": [
     {
       "name": "Terminal-Bench 4",
-      "time": "2026-09-20",
-      "type": "任务元数据 / 质量规范更新",
-      "summary": "官方仓库统一补充任务作者字段并更新 README 元数据，继续推进任务静态检查合规与贡献流程标准化。",
-      "impact": "高：任务工程、作者溯源、自动检查、oracle 与 verifier 质检流程更规范。",
-      "url": "https://github.com/harbor-framework/terminal-bench/commit/2e5fd44f8c0393d9ec3a2d7a73826a29c1615ccf"
-    },
-    {
-      "name": "DeliveryGym",
-      "time": "2026-09-18",
-      "type": "新 Benchmark / 具身智能",
-      "summary": "公开长周期具身配送环境与代码：64 个留出班次、10 个城市相册、连续时间/能量/金钱/安全约束，并通过模拟器事件验证奖励。",
-      "impact": "高：对应 VLA、世界模型、具身轨迹、仿真场景和长链 verifier 数据生产。",
-      "url": "https://github.com/mk322/DeliveryGym"
-    },
-    {
-      "name": "OSWorld 2.1",
-      "time": "2026-09-16",
-      "type": "官方版本发布",
-      "summary": "发布 osworld-v2.1 bug-fix 版本，更新 Agent、评测工作流，并统一固定任务、资产、模拟网站与 provider image 版本。",
-      "impact": "高：桌面 Agent 环境、任务资产、网站镜像及版本回归服务需求进一步明确。",
-      "url": "https://github.com/xlang-ai/OSWorld-V2"
-    },
-    {
-      "name": "BIABench",
-      "time": "2026-09-16",
-      "type": "新 Benchmark / 科学 Agent",
-      "summary": "公开真实生物图像分析 Agent Benchmark：16 个从已发表研究重建的任务，同时评估结果质量与分析过程；数据约 11.1GB 压缩、26.6GB 解压。",
-      "impact": "高：需要生物影像专家、任务重建、过程 rubric、VLM 复核与结果质检。",
-      "url": "https://github.com/BIABench/BIABench"
-    },
-    {
-      "name": "LTM100",
-      "time": "2026-09-15",
-      "type": "新 Benchmark / Agent Memory",
-      "summary": "SK hynix 开源多用户长期记忆系统负载 Benchmark，覆盖 add、search、add&search、REST/MCP，对吞吐、延迟、错误率与并发扩展性进行测量。",
-      "impact": "中高：适合记忆数据流、并发场景、回归脚本与性能 QA 服务。",
-      "url": "https://github.com/skhynix/LTM100"
-    },
-    {
-      "name": "Long-Horizon Terminal-Bench",
-      "time": "2026-09-15",
-      "type": "评分资产修正",
-      "summary": "官方仓库修正 offcode 任务的重新评分曲线与快照时间，提升公开图表、分数解释和复现的一致性。",
-      "impact": "高：长链任务的评分资产、回归验证与结果审计仍需持续维护。",
-      "url": "https://github.com/zli12321/LHTB/commit/d78f5eb52ad754c5ee9154741af73130a85a65b8"
+      "time": "2026-10-09",
+      "type": "环境可复现性 / 任务版本 / 榜单提交",
+      "summary": "10月7–9日固定任务容器镜像digest、增加静态检查及任务版本元数据，锁定部分依赖并校验sbt下载；修复uv镜像引用构建，另合入多模型榜单提交。",
+      "impact": "高：任务镜像交付、依赖锁定、版本追踪与回归验证更关键（服务商分析）。",
+      "url": "https://github.com/harbor-framework/terminal-bench/commit/209679e34327a78ce8e9bf5300b2f317992863c9"
     },
     {
       "name": "JobBench",
-      "time": "2026-09-15",
-      "type": "评测 Harness 更新",
-      "summary": "官方评测仓将 Harbor 默认 Agent 超时上调至 2 小时，以适配更长的真实职业工作流任务。",
-      "impact": "高：长耗时办公任务的环境稳定性、超时策略、交付物验收与回归成本上升。",
-      "url": "https://github.com/Job-Bench/job-bench-eval/commit/e0267c6d2413a5df3448be1c45449aa36843e73d"
+      "time": "2026-10-07",
+      "type": "评分规则澄清 / Harness更新",
+      "summary": "10月3日明确基准分数为逐任务加权分数的等权平均，完整main结果覆盖65任务；10月7日为支持的OpenCode provider添加稳定prompt cache key。",
+      "impact": "高：交付物rubric、完整覆盖率和评分聚合需对齐，降低评测口径差异（服务商分析）。",
+      "url": "https://github.com/Job-Bench/job-bench-eval/commit/c63c0a0827608f81b4dc9dcee7213f8de0fd407b"
+    },
+    {
+      "name": "Terminal-Bench Science",
+      "time": "2026-10-05",
+      "type": "评审配置 / 试跑策略更新",
+      "summary": "官方调整analyze、review与proposal_review的模型/provider配置，并暂时关闭部分Codex试跑，以应对仓库记录的provider失败。此为贡献评审流水线变化，并非任务规模新增。",
+      "impact": "中高：复现时需记录judge与provider配置，区分环境失败和任务失败（服务商分析）。",
+      "url": "https://github.com/harbor-framework/terminal-bench-science/commit/4c55d75632227a4cb99461ab63c41350ce72f137"
+    },
+    {
+      "name": "LTM100",
+      "time": "2026-10-05",
+      "type": "后端扩展 / 负载调度 / 合成语料",
+      "summary": "10月3日新增Supermemory REST后端；10月4日修正时长截止后新操作的调度；10月5日让合成语料与查询池遵循运行seed，增强不同并发和语料规模实验的可比性。",
+      "impact": "中高：记忆语料、接口适配、截止调度与重复运行QA可形成服务环节（服务商分析）。",
+      "url": "https://github.com/skhynix/LTM100/commit/6bb86d1748cd72cd6912948afbed9cbaf88e9e58"
     }
   ],
   "featured": [
     {
       "rank": 1,
-      "name": "DeliveryGym",
-      "tag": "Embodied Agent / VLA / Long-Horizon Planning",
-      "reason": "近7天公开完整具身配送环境，场景资产、长轨迹、事件标注、奖励与verifier均可形成数据服务包件，和具身采集方向高度匹配。",
+      "name": "Terminal-Bench 4",
+      "reason": "近7天镜像、任务版本、依赖和榜单持续更新，优先关注容器环境交付、verifier质检与回归服务。",
+      "tag": "Terminal Agent / CLI / General Computer Work",
       "business_priority": "S",
       "product_priority": "S"
     },
     {
       "rank": 2,
-      "name": "BIABench",
-      "tag": "Scientific Agent / Bioimage / Expert Evaluation",
-      "reason": "16个真实研究任务同时评估结果与过程，专家任务重建、过程rubric、VLM复核和人工仲裁需求明确。",
+      "name": "JobBench",
+      "reason": "近7天明确65任务评分聚合与缓存支持，适合办公交付物、rubric设计和评测一致性服务。",
+      "tag": "Professional Agent / Occupational Workflow / Office",
       "business_priority": "S",
       "product_priority": "S"
     },
     {
       "rank": 3,
-      "name": "OSWorld 2.1",
-      "tag": "Computer-Use Agent / Desktop / Long-Horizon",
-      "reason": "9月16日发布2.1版本，任务、资产、网站和镜像必须配套固定，环境搭建、任务扩写与版本回归价值高。",
-      "business_priority": "S",
-      "product_priority": "S"
+      "name": "LTM100",
+      "reason": "近7天新增后端并修正负载调度与语料seed，可切入记忆数据、接口适配和性能/质量联合回归。",
+      "tag": "Agent Memory / Load Benchmark / MCP",
+      "business_priority": "A",
+      "product_priority": "A"
     },
     {
       "rank": 4,
-      "name": "Physion-Arc 1.0",
-      "tag": "Video Agent / AIGC Video / Human Preference Eval",
-      "reason": "视频脚本、参考资产、角色/镜头一致性、偏好标注与质量评测仍和现有视频数据服务能力高度匹配。",
+      "name": "SWE-bench Pro",
+      "reason": "9月22日V2不计入本周新增，但642个Harbor任务、防作弊协议与公共镜像值得作为高价值任务工程方向。",
+      "tag": "Software Engineering Agent / Long-Horizon Coding",
       "business_priority": "S",
       "product_priority": "S"
     },
     {
       "rank": 5,
-      "name": "Long-Horizon Terminal-Bench",
-      "tag": "Long-Horizon Agent / Terminal / Dense Reward",
-      "reason": "9月15日修正评分资产；46个高成本长链任务持续需要环境、reference solution、分阶段verifier与轨迹质检。",
+      "name": "Physion-Arc 1.0",
+      "reason": "官网摘要已有广告与营销Track，上线日期未核实；脚本、参考资产、视频偏好与一致性评测和现有业务匹配。",
+      "tag": "Video Agent / AIGC Video / World Model Evaluation",
       "business_priority": "S",
       "product_priority": "S"
     }
@@ -118,9 +94,9 @@
       "description": "Zapier 的企业自动化 Agent Benchmark，测试 Agent 跨 CRM、邮箱、日历等工具完成端到端业务工作流。",
       "team": "Zapier",
       "direction": "Enterprise Agent / Automation / API Tool Use",
-      "release_or_update": "2026-09-14核验：官方 Leaderboard 已刷新至 GPT 6 Astra、Claude Fable 5.1、Gemini 3.8 Flash 等新模型；基准版本仍为 v1.0.6",
-      "heat_score_30d": 98,
-      "heat_reason": "近7天 Zapier 官方内容再次以 AutomationBench 作为模型工作流选择依据；当前官方 Leaderboard 已补入 GPT 6 Astra、Claude Fable 5.1、Gemini 3.8 Flash 等新模型，榜单活跃度很高。",
+      "release_or_update": "2026-10-09核验：官网仍标示 v1.0.6；当前榜首为 Gemini 4 Argon (High)，51.29%；页面未标示该成绩发布日期",
+      "heat_score_30d": 78,
+      "heat_reason": "当前官方榜单与旧快照不同，但无法确认变更发生在近7天，不计入新增。公开仓库近30日未检出提交。",
       "paper": "https://arxiv.org/abs/2604.18934",
       "website": "https://zapier.com/benchmarks",
       "github": "https://github.com/zapier/AutomationBench",
@@ -136,7 +112,11 @@
       "productization": "可做金融、销售运营、客服、HR、采购等垂直 Automation Benchmark。",
       "poc": "20条中文企业自动化任务，交付初始状态、任务规则、目标状态、verifier 和3次回归。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/zapier/AutomationBench"
+      ]
     },
     {
       "name": "JobBench",
@@ -144,9 +124,9 @@
       "description": "面向真实白领职业工作流的 Agent Benchmark，任务来自人类希望委托给 AI 的工作，并用异构文件和细粒度 rubric 验收。",
       "team": "University of Washington 等多机构 / Job-Bench",
       "direction": "Professional Agent / Occupational Workflow / Office",
-      "release_or_update": "2026-09-15：评测仓将 Harbor 默认 Agent 超时提高到 2 小时，以支持更长的真实职业工作流；官网榜单持续开放",
-      "heat_score_30d": 92,
-      "heat_reason": "9月15日更新长任务超时策略，反映职业工作流评测正在向更长链、更高环境稳定性要求演进；专家任务与交付物验收需求强。",
+      "release_or_update": "2026-10-07：支持 OpenCode provider 的稳定 prompt cache key；10月3日明确全量65任务等权、任务内rubric加权评分",
+      "heat_score_30d": 88,
+      "heat_reason": "近7天核验到评分口径澄清与缓存支持；验收覆盖率、judge错误处理和办公交付物QA值得跟踪。",
       "paper": "https://arxiv.org/abs/2605.26329",
       "website": "https://job-bench.github.io/",
       "github": "https://github.com/Job-Bench/job-bench-eval",
@@ -162,7 +142,13 @@
       "productization": "可做金融、医疗、法务、运营、人力、供应链等岗位工作委托 Benchmark。",
       "poc": "5个职业×5条任务；每条3–8个异构文件、参考交付物、20+ rubric 和验收记录。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/Job-Bench/job-bench-eval/commit/660b33a86ed032559df0b2fdc1ad38cf7ceb83f3",
+        "https://github.com/Job-Bench/job-bench-eval/commit/c63c0a0827608f81b4dc9dcee7213f8de0fd407b",
+        "https://github.com/Job-Bench/job-bench-eval/commit/e0267c6d2413a5df3448be1c45449aa36843e73d"
+      ]
     },
     {
       "name": "OSWorld 2.1",
@@ -170,9 +156,9 @@
       "description": "长链真实桌面 Computer-Use Benchmark，评估 Agent 跨应用完成复杂任务，并对任务、资产、网站、镜像进行版本化。",
       "team": "XLang Lab / HKU 等",
       "direction": "Computer-Use Agent / Desktop / Long-Horizon",
-      "release_or_update": "2026-09-16：发布 osworld-v2.1 bug-fix 版本；更新 Agent、评测工作流，并固定任务、资产、模拟网站与 provider image 版本",
-      "heat_score_30d": 95,
-      "heat_reason": "9月16日发布新的推荐版本 OSWorld 2.1；任务、资产、网站、镜像和运行环境需要严格版本对齐，环境工程与回归验证活跃度高。",
+      "release_or_update": "2026-09-28：更新 AWS 环境启动节流、空响应重试、图像规范化与 Muse Spark 上下文压缩；当前近7天未检出仓库提交",
+      "heat_score_30d": 83,
+      "heat_reason": "近30日官方持续完善评测环境与Agent稳定性；9月版本更新已移出近7天窗口。",
       "paper": "https://arxiv.org/abs/2606.29537",
       "website": "https://osworld-v2.xlang.ai/",
       "github": "https://github.com/xlang-ai/OSWorld-V2",
@@ -188,7 +174,13 @@
       "productization": "可做 WPS/Office、医疗工作站、金融后台、政务桌面行业版。",
       "poc": "15条国产 Office+浏览器跨应用任务，含 VM、资产、mock web、轨迹和 verifier。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/xlang-ai/OSWorld-V2/commit/acdd3493808e716825975b0f0208194bb2faf3c3",
+        "https://github.com/xlang-ai/OSWorld-V2/commit/ddf25f03e0e28ea1355032cb531c5e8f249c3db9",
+        "https://github.com/xlang-ai/OSWorld-V2/commit/5ec231629c6bdc49190dd05c5d72e379690f5636"
+      ]
     },
     {
       "name": "Pipette",
@@ -196,9 +188,9 @@
       "description": "Liquid AI 的端侧 AI Benchmark，比较模型、量化、runtime、设备和上下文配置下的质量与实机性能。",
       "team": "Liquid AI / Artificial Analysis",
       "direction": "On-Device AI / Edge Benchmark / Hardware",
-      "release_or_update": "2026-08-24 正式发布；公开1,000+端侧配置、30+模型",
-      "heat_score_30d": 93,
-      "heat_reason": "8月24日刚发布，公开实验数据覆盖1,000+ model×quantization×runtime×device×context配置，且官方仓已开放edge-eval数据与评分基础设施。",
+      "release_or_update": "2026-08-24 正式发布；公开1,000+端侧配置、30+模型；2026-10-09检查：官方仓库近30日未检出提交，未确认近7天事件",
+      "heat_score_30d": 62,
+      "heat_reason": "本次官方仓库检查未检出近30日提交；保留为长期监控对象。历史项目信息供参考，不视为本周新发布或采购信号。",
       "paper": "https://www.liquid.ai/blog/pipette-on-device-ai-benchmarking-by-liquid-ai",
       "website": "https://pipette.liquid.ai/",
       "github": "https://github.com/Liquid4All/pipette-scores",
@@ -214,7 +206,11 @@
       "productization": "可做国产手机、AI PC、边缘盒子、车载设备性能库。",
       "poc": "3类设备×5模型×2量化，测 TTFT/TPS/E2E latency/peak RAM 并交付原始记录。",
       "business_priority": "S",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/Liquid4All/pipette-scores"
+      ]
     },
     {
       "name": "SWE-bench",
@@ -222,9 +218,9 @@
       "description": "真实 GitHub issue 级软件工程 Agent Benchmark，让 Agent 修复真实代码问题，并用测试与 Docker 环境验证 patch。",
       "team": "Princeton / Stanford / SWE-bench 社区",
       "direction": "Software Engineering Agent / Coding",
-      "release_or_update": "SWE-bench Multimodal v2 于2026-08-11更新；8月14日继续修复多项 build/harness 问题",
-      "heat_score_30d": 78,
-      "heat_reason": "近30日 Multimodal v2 将test split调整为485个实例，并在8月14日继续修复Chrome、git history、权限等环境问题；家族生态持续维护。",
+      "release_or_update": "SWE-bench Multimodal v2 于2026-08-11更新；8月14日继续修复多项 build/harness 问题；2026-10-09检查：官方仓库近30日未检出提交，未确认近7天事件",
+      "heat_score_30d": 65,
+      "heat_reason": "本次官方仓库检查未检出近30日提交；保留为长期监控对象。历史项目信息供参考，不视为本周新发布或采购信号。",
       "paper": "https://www.swebench.com/",
       "website": "https://www.swebench.com/",
       "github": "https://github.com/SWE-bench/SWE-bench",
@@ -240,7 +236,11 @@
       "productization": "可做企业私有代码、DevOps、数据工程、安全修复行业版。",
       "poc": "5个可商用开源repo×6条issue，共30条；交付Docker、tests、reference patch和双工程师复核。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/SWE-bench/SWE-bench"
+      ]
     },
     {
       "name": "Terminal-Bench 4",
@@ -248,9 +248,9 @@
       "description": "Terminal-Bench 当前连续发布代际的高难 CLI Agent Benchmark，以真实、长链、可程序化验证的终端任务衡量 Agent 工作能力。",
       "team": "Stanford University / Laude Institute / Harbor Framework",
       "direction": "Terminal Agent / CLI / General Computer Work",
-      "release_or_update": "2026-09-20：统一补充任务作者与 README 元数据并推进静态检查合规；当前最新公开数据集为 Terminal-Bench 4",
-      "heat_score_30d": 89,
-      "heat_reason": "9月20日继续更新任务元数据和静态检查规范；官方维持 continuous benchmark、开放任务贡献和版本化发布，任务工程需求活跃。",
+      "release_or_update": "2026-10-09：修复 digest-only uv 镜像引用的托管构建；10月7–8日更新任务版本、镜像固定、依赖校验与多模型榜单提交",
+      "heat_score_30d": 96,
+      "heat_reason": "近7天任务可复现性、静态检查及榜单提交持续迭代；支持环境工程、verifier QA和版本回归服务分析。",
       "paper": "https://arxiv.org/abs/2601.11868",
       "website": "https://www.tbench.ai/",
       "github": "https://github.com/harbor-framework/terminal-bench",
@@ -266,7 +266,13 @@
       "productization": "适合 DevOps、网络安全、数据库、金融、科研工具等垂直 terminal benchmark。",
       "poc": "10条高难任务，含Docker、oracle、tests、baseline与5次稳定性运行。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/harbor-framework/terminal-bench/commit/209679e34327a78ce8e9bf5300b2f317992863c9",
+        "https://github.com/harbor-framework/terminal-bench/commit/bf4c1255fe70237aecd03a14b0fab9f01afca6b4",
+        "https://github.com/harbor-framework/terminal-bench/commit/d44919b75f81e0b9548403c207cddae271fce0c3"
+      ]
     },
     {
       "name": "Terminal-Bench Science",
@@ -274,9 +280,9 @@
       "description": "面向真实科学研究工作流的 Terminal Agent Benchmark，要求科学专家提供可复现、可验证的复杂科研任务。",
       "team": "Stanford University / Laude Institute / Harbor Framework",
       "direction": "Terminal Agent / AI4Science / Scientific Workflow",
-      "release_or_update": "Terminal-Bench-Science 0.1 于2026-08-27正式发布并持续开放评测",
-      "heat_score_30d": 92,
-      "heat_reason": "8月27日刚发布0.1并上线Leaderboard，覆盖多科学领域；榜首仅30.0%，仍有巨大能力空间，同时保留任务贡献入口，专家数据生产需求强。",
+      "release_or_update": "2026-10-05：调整 analyze/review/proposal_review 评审模型与provider，并暂停部分Codex试跑；10月7日另更新引用元数据",
+      "heat_score_30d": 86,
+      "heat_reason": "近7天评审流水线有实质配置变化；需区分环境/provider失败与任务失败，评测独立性和稳定性值得核查。",
       "paper": "https://github.com/harbor-framework/terminal-bench-science",
       "website": "https://www.terminal-bench-science.ai/",
       "github": "https://github.com/harbor-framework/terminal-bench-science",
@@ -292,7 +298,13 @@
       "productization": "可做药物研发、生物信息、材料、计算化学、工业仿真等 AI4Science 版本。",
       "poc": "2个科学方向×5条任务；含容器、数据、reference solution、verifier和双专家QA。",
       "business_priority": "S",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/harbor-framework/terminal-bench-science/commit/8ef49c8a64cf57f9913755b41ed6a0fe1a667192",
+        "https://github.com/harbor-framework/terminal-bench-science/commit/4c55d75632227a4cb99461ab63c41350ce72f137",
+        "https://github.com/harbor-framework/terminal-bench-science/commit/61f4a549ebf77c29bedda0faf10779c9333ddad2"
+      ]
     },
     {
       "name": "AgentCIBench",
@@ -300,12 +312,12 @@
       "description": "评估 Computer-Use Agent 是否遵守 contextual integrity 的隐私/安全 Benchmark，重点测过度分享、视觉共置与收件人错配。",
       "team": "UKP Lab / TU Darmstadt",
       "direction": "Computer-Use Safety / Privacy / Contextual Integrity",
-      "release_or_update": "2026-06发布；代码、HF数据集与Leaderboard继续开放",
-      "heat_score_30d": 52,
-      "heat_reason": "近30日未核验到新的正式release，但隐私/安全类Computer-Use Benchmark稀缺，且代码Apache-2.0、数据CC BY 4.0、提交Leaderboard链路完整。",
+      "release_or_update": "2026-06发布；代码、HF数据集与Leaderboard继续开放；2026-10-09检查：官方仓库近30日未检出提交，未确认近7天事件",
+      "heat_score_30d": 50,
+      "heat_reason": "本次官方仓库检查未检出近30日提交；保留为长期监控对象。历史项目信息供参考，不视为本周新发布或采购信号。",
       "paper": "https://arxiv.org/abs/2606.23189",
       "website": "https://ukplab.github.io/arxiv2026-agentcibench/",
-      "github": "https://github.com/UKPLab/arxiv2026-agentcibench",
+      "github": "https://github.com/UKPLab/emnlp2026-agentcibench",
       "dataset": "https://huggingface.co/datasets/UKPLab/agentcibench",
       "leaderboard": "https://ukplab.github.io/arxiv2026-agentcibench/",
       "contact": "Anmol Goel — anmol.goel@tu-darmstadt.de",
@@ -318,7 +330,11 @@
       "productization": "适合金融、医疗、HR、企业协同等 Contextual Integrity Benchmark。",
       "poc": "30条隐私场景，覆盖 overshare、wrong-recipient、co-location，交付 synthetic data 和 scorer。",
       "business_priority": "A",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/UKPLab/emnlp2026-agentcibench"
+      ]
     },
     {
       "name": "PPT-Eval",
@@ -326,9 +342,9 @@
       "description": "评估 Agent 创建和编辑 PowerPoint 的 Benchmark，使用任务级 rubric 支持部分得分、无效修改惩罚和视觉质量评价。",
       "team": "Carnegie Mellon University / Microsoft / UMass Amherst 等",
       "direction": "Office Agent / PowerPoint / Computer-Use",
-      "release_or_update": "ICML 2026项目持续开放；120 PowerPoint tasks / 12 files",
+      "release_or_update": "ICML 2026项目持续开放；120 PowerPoint tasks / 12 files；2026-10-09检查：官方仓库近30日未检出提交，未确认近7天事件",
       "heat_score_30d": 50,
-      "heat_reason": "近30日未核验到重大版本更新，但Office Agent商业场景明确，代码、Task Explorer和评测方法仍具较强复用价值。",
+      "heat_reason": "本次官方仓库检查未检出近30日提交；保留为长期监控对象。历史项目信息供参考，不视为本周新发布或采购信号。",
       "paper": "https://arxiv.org/abs/2606.31154",
       "website": "https://microsoft.github.io/ppteval/",
       "github": "https://github.com/microsoft/ppteval",
@@ -344,7 +360,11 @@
       "productization": "适合 Office-Bench / Excel-Bench / Word-Bench / WPS-Bench。",
       "poc": "PPT/Excel/Word各10条，提供源文件、目标状态、rubric和视觉检查项。",
       "business_priority": "A",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/microsoft/ppteval"
+      ]
     },
     {
       "name": "TUA-Bench",
@@ -352,9 +372,9 @@
       "description": "通用 Terminal-Use Agent Benchmark，覆盖文档编辑、邮件、实时网页信息和科研/工程工具。",
       "team": "Meta / Facebook Research 等作者团队",
       "direction": "Terminal-Use Agent / General Digital Workflow",
-      "release_or_update": "120个real-world execution-based tasks；当前Leaderboard榜首 Claude Code + Opus 4.8 success rate 65.8%",
-      "heat_score_30d": 68,
-      "heat_reason": "任务集本身无新release，但当前Leaderboard已覆盖Claude Opus 4.8、GPT-5.5等较新模型，保持稳定评测活跃度。",
+      "release_or_update": "120个real-world execution-based tasks；2026-10-09检查：官方仓库近30日未检出提交，未确认近7天事件",
+      "heat_score_30d": 60,
+      "heat_reason": "本次官方仓库检查未检出近30日提交；保留为长期监控对象。历史项目信息供参考，不视为本周新发布或采购信号。",
       "paper": "https://arxiv.org/abs/2606.28480",
       "website": "https://tuabench.ai/",
       "github": "https://github.com/facebookresearch/TUA-Bench",
@@ -370,7 +390,11 @@
       "productization": "方法可复制，但建议自建可商用 Terminal-Use 数据资产。",
       "poc": "10条通用terminal workflow，覆盖文档、邮件模拟、网页信息和科学工具。",
       "business_priority": "A",
-      "product_priority": "B"
+      "product_priority": "B",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/facebookresearch/TUA-Bench"
+      ]
     },
     {
       "name": "WindTunnel",
@@ -378,9 +402,9 @@
       "description": "比较 WebMCP、截图 Computer Use、DOM/Accessibility Tree 等浏览器 Agent 接口，同时测成功率、耗时、Token 和成本。",
       "team": "Nekuda AI",
       "direction": "Browser Agent / WebMCP / Interface Benchmark",
-      "release_or_update": "Canonical run：2026-08-20；16 configurations × 49 tasks × 8 sites × 3 attempts",
-      "heat_score_30d": 90,
-      "heat_reason": "8月20日canonical run仍在近30日窗口内，共2,352 attempt rows / 784 majority verdicts，WebMCP、DOM+vision、截图接口的成本/时延对比仍具较强热度。",
+      "release_or_update": "2026-09-18：公开 Jev 运行器、脱敏轨迹与 Jev + Mercury 2.5 结果；近7天未检出仓库提交",
+      "heat_score_30d": 76,
+      "heat_reason": "近30日公开可复现运行器和轨迹；轨迹整理、失败归因与浏览器任务质检具有服务价值。",
       "paper": "https://github.com/nekuda-ai/WindTunnel",
       "website": "https://github.com/nekuda-ai/WindTunnel",
       "github": "https://github.com/nekuda-ai/WindTunnel",
@@ -396,7 +420,12 @@
       "productization": "可做企业 Web Agent Regression Suite。",
       "poc": "CRM/电商/预约3站点×5任务，跑Screenshot+DOM+MCP，交付成功率/成本/时间对照。",
       "business_priority": "B",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/nekuda-ai/WindTunnel/commit/5ca8644e23826ebb30108e7bad240b61043bfe67",
+        "https://github.com/nekuda-ai/WindTunnel/commit/eac58a1d529f0e19b3c05b5318aa97f64f295e20"
+      ]
     },
     {
       "name": "Hugging Face",
@@ -404,9 +433,9 @@
       "description": "按 Benchmark Hub / Leaderboard Infrastructure 监控：Hub 提供官方 Benchmark Dataset、Eval Results、社区 Leaderboard 和可编程 leaderboard API。",
       "team": "Hugging Face",
       "direction": "Benchmark Hub / Leaderboards / Evaluation Infrastructure",
-      "release_or_update": "官方Benchmark Dataset Leaderboard API、Eval Results与OpenEvals聚合数据持续可用",
-      "heat_score_30d": 98,
-      "heat_reason": "官方文档已提供benchmark:official发现接口、dataset leaderboard API、OpenEvals/leaderboard-data跨Benchmark聚合和可嵌入Leaderboard能力，仍是Benchmark发现与分发基础设施高频入口。",
+      "release_or_update": "2026-10-09核验：官方Benchmark发现、Leaderboard数据访问与Eval Results文档可用；此项为平台入口",
+      "heat_score_30d": 75,
+      "heat_reason": "作为评测发现与分发基础设施保留监控；平台文档可用不等同于单一Benchmark在近7天有更新。",
       "paper": "https://huggingface.co/docs/leaderboards/index",
       "website": "https://huggingface.co/",
       "github": "https://github.com/huggingface",
@@ -422,24 +451,28 @@
       "productization": "可把自有行业 Benchmark 发布为 HF Dataset + leaderboard。",
       "poc": "选1个自有Benchmark，整理dataset card + eval.yaml + 20个模型评测结果，形成可嵌入leaderboard。",
       "business_priority": "A",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/huggingface"
+      ]
     },
     {
       "name": "SWE-bench Pro",
       "alias": "SWE-bench Pro",
       "description": "面向长周期真实代码仓库任务的软件工程 Agent Benchmark，用更复杂的仓库级任务评估模型/Agent 的持续修复与工程能力。",
-      "team": "SWE-bench / 社区衍生评测生态",
+      "team": "Scale AI / Scale Labs",
       "direction": "Software Engineering Agent / Long-Horizon Coding",
-      "release_or_update": "2026-09-10：公开榜单快照更新；官方数据/代码仍由 ScaleAI SWE-bench Pro 体系维护",
-      "heat_score_30d": 96,
-      "heat_reason": "9月10日出现新的公开榜单快照；同时该 Benchmark 因任务有效性、长周期仓库任务与评测环境问题持续受到关注，适合作为复杂软件工程 Agent 监控对象。",
-      "paper": "https://www.swebench.com/",
-      "website": "https://benchlm.ai/benchmarks/swe-bench-pro",
-      "github": "https://github.com/SWE-bench/SWE-bench",
-      "dataset": "https://huggingface.co/SWE-bench",
-      "leaderboard": "https://benchlm.ai/benchmarks/swe-bench-pro",
-      "contact": "SWE-bench 社区 / GitHub Issues",
-      "data_scale_structure": "公开榜单收录多模型结果；任务面向真实仓库级软件工程问题，强调长周期修改、测试与环境复现。",
+      "release_or_update": "2026-09-22：Scale AI 发布 V2，642个验证任务、HARD-51子集与Harbor格式；近7天未检出官方仓库提交",
+      "heat_score_30d": 88,
+      "heat_reason": "V2是近30日的重要任务质量与防作弊更新；不属于本次近7天新增。官方代码、数据集与榜单入口已校正。",
+      "paper": "https://arxiv.org/abs/2509.16941",
+      "website": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2?tab=full",
+      "github": "https://github.com/scaleapi/SWE-bench_Pro-os",
+      "dataset": "https://huggingface.co/datasets/ScaleAI/SWE-bench_Pro",
+      "leaderboard": "https://labs.scale.com/leaderboard/swe_bench_pro_public_v2?tab=full",
+      "contact": "Scale AI / 官方仓库 GitHub Issues",
+      "data_scale_structure": "V2：11个仓库、642个验证任务，另有HARD-51子集；Harbor任务目录含verifier、reference solution与公共容器镜像。HF default配置为V2，v1配置保留原731个公开任务。",
       "production_method": "真实仓库任务筛选 + 环境构建 + 测试/验证器 + Agent运行 + 结果复核。",
       "dependencies": "人工高；工程专家极高；环境极高。",
       "outsourcing": "仓库筛选、issue/任务扩写、Docker环境、测试用例、reference patch、工程师复核、稳定性回归。",
@@ -448,7 +481,11 @@
       "productization": "可做企业私仓 SWE-Pro、DevOps 修复、数据工程/安全修复长链评测。",
       "poc": "3–5个可商用repo×5条复杂任务，交付环境、测试、参考修复与双工程师QA。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/README.md"
+      ]
     },
     {
       "name": "Long-Horizon Terminal-Bench",
@@ -456,9 +493,9 @@
       "description": "46个长周期终端任务 Benchmark，专门测试 Agent 在数百步、长上下文和分钟到小时级执行中的持续工作能力，并用密集奖励衡量中间进展。",
       "team": "IntelligenceLab / 多机构作者团队",
       "direction": "Long-Horizon Agent / Terminal / Dense Reward",
-      "release_or_update": "2026-09-15：修正 offcode 重新评分曲线与快照时间；46 tasks、21 个前沿模型结果持续维护",
-      "heat_score_30d": 96,
-      "heat_reason": "9月15日修正评分资产与快照时间；46个长链任务采用隐藏 verifier 和密集奖励，评分审计、环境复现及长轨迹质检价值高。",
+      "release_or_update": "2026-10-02：合并 Apple Silicon oracle smoke test 修复；9月22日更新smoke/verifier配置；近7天未检出GitHub提交",
+      "heat_score_30d": 82,
+      "heat_reason": "近30日持续修正评分与跨平台复现；10月2日北京时间的提交在本次窗口之外，不计入近7天新增。",
       "paper": "https://arxiv.org/abs/2607.08964",
       "website": "https://zli12321.github.io/LHTB/",
       "github": "https://github.com/zli12321/LHTB",
@@ -474,7 +511,13 @@
       "productization": "可做 DevOps、科研、数据分析、安全、工业仿真等长周期 Agent Benchmark。",
       "poc": "6条长链任务，每条30–90分钟，交付容器、分阶段评分、reference solution和3次稳定性回归。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/zli12321/LHTB/commit/52381e7d747b03e6f6af1953a4c7ff5dad78112e",
+        "https://github.com/zli12321/LHTB/commit/237f18dfe15ca9db7377a0e50b3b35918b064a40",
+        "https://github.com/zli12321/LHTB/commit/d78f5eb52ad754c5ee9154741af73130a85a65b8"
+      ]
     },
     {
       "name": "CyberGym",
@@ -482,9 +525,9 @@
       "description": "UC Berkeley 面向真实软件漏洞的网络安全 Agent Benchmark，评估 Agent 复现历史漏洞、生成可工作的 PoC，并持续通过公开 Observatory 跟踪能力。",
       "team": "UC Berkeley / Dawn Song 团队",
       "direction": "Cybersecurity Agent / Vulnerability Reproduction / Real-World",
-      "release_or_update": "2026-09-10：公开榜单快照更新；官方 CyberGym Live Leaderboard / Cybersecurity Observatory 持续开放",
-      "heat_score_30d": 96,
-      "heat_reason": "近7天公开榜单继续刷新；官方 Observatory 仍持续追踪 CyberGym、ExploitGym、CyberGym-E2E 等安全 Agent 能力，真实漏洞数据与环境复现价值高。",
+      "release_or_update": "2026-10-09核验：官方项目页和榜单入口可用；近30日代码仓未检出提交，榜单发布日期未明确",
+      "heat_score_30d": 77,
+      "heat_reason": "官方确认1,507个真实漏洞实例、188个项目。此次未核验到近7天有明确日期的榜单变化，不沿用旧快照的“持续刷新”表述。",
       "paper": "https://www.cybergym.io/cybergym/",
       "website": "https://www.cybergym.io/cybergym/",
       "github": "https://github.com/anjanas/cybergym",
@@ -500,17 +543,21 @@
       "productization": "可做企业代码安全 Agent Benchmark、漏洞复现/修复闭环评测。",
       "poc": "20个已披露漏洞，交付可复现环境、PoC验证器、Agent运行记录和人工复核。",
       "business_priority": "S",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/anjanas/cybergym"
+      ]
     },
     {
       "name": "Physion-Arc 1.0",
       "alias": "Physion-Arc 1.0",
-      "description": "Physion Labs 的 AI 视频 Agent Benchmark，评估 Agent 从剧本/参考素材生成约1分钟多场景视频时的叙事一致性、电影语言、角色/风格连续性与制作质量；当前包含 Movie Track 与 Anime Track。",
+      "description": "Physion Labs 的视频 Agent Benchmark，关注多场景视频的叙事、影视语言、角色与风格一致性；当前官网公开摘要列出 Movie、Anime、Ads & Marketing Track。",
       "team": "Physion Labs",
       "direction": "Video Agent / AIGC Video / World Model Evaluation",
-      "release_or_update": "2026-09-12：Anime Track 上线；当前官网同时提供 Physion-Arc 1.0 Movie Track 与 Anime Track",
-      "heat_score_30d": 97,
-      "heat_reason": "近7天新增 Anime Track；官方持续扩展视频 Agent 榜单。该 Benchmark 同时依赖脚本/视觉资产、细粒度 rubric、多人主观偏好与客观一致性评测，和AIGC视频数据、质量评测业务高度相关。",
+      "release_or_update": "2026-10-09核验：官网检索结果已包含 Movie、Anime、Ads & Marketing 三个Track；广告Track上线日期未核实",
+      "heat_score_30d": 82,
+      "heat_reason": "现有官网公开摘要出现广告与营销Track，适配视频数据业务；未核实其上线日期，因此不计入近7天新增。",
       "paper": "https://physionlabs.ai/",
       "website": "https://physionlabs.ai/",
       "github": "",
@@ -526,7 +573,11 @@
       "productization": "可做中文短剧/广告/电商/动漫 Video-Agent Benchmark 与视频一致性评测数据产品。",
       "poc": "20个中文短剧/动漫任务，覆盖text-only与reference-conditioned；每条生成2–4个候选视频，交付16项左右rubric、pairwise偏好、角色/镜头一致性标注及QA记录。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://physionlabs.ai/"
+      ]
     },
     {
       "name": "DeliveryGym",
@@ -534,9 +585,9 @@
       "description": "面向长周期具身配送规划的 3D 训练与评测环境，让视觉语言 Agent 在连续班次中读取街景、地图、订单和时钟，并在时间、能量、资金与安全约束下完成配送。",
       "team": "DeliveryGym 作者团队",
       "direction": "Embodied Agent / VLA / Long-Horizon Planning / RL",
-      "release_or_update": "2026-09-18：公开代码仓与数据入口；v0.1.0 包含 waypoint benchmark、10个城市相册、参考策略、GRPO训练器与 any-point 代码",
-      "heat_score_30d": 92,
-      "heat_reason": "近7天公开完整环境；长周期具身规划、VLA、多模态工具使用和模拟器事件奖励均处于高热方向，且任务/资产/轨迹生产链长。",
+      "release_or_update": "2026-09-18：公开代码与数据入口；本次近7天未检出官方仓库提交",
+      "heat_score_30d": 78,
+      "heat_reason": "9月公开具身配送环境仍在近30日窗口内；场景、视觉资产、长链轨迹与奖励质检为业务分析方向。",
       "paper": "https://arxiv.org/abs/2609.19801",
       "website": "https://mk322.github.io/DeliveryGym/",
       "github": "https://github.com/mk322/DeliveryGym",
@@ -552,7 +603,11 @@
       "productization": "可做仓储、零售、园区、末端配送等中文具身长周期规划 Benchmark。",
       "poc": "设计2类商业场景×10条长链配送/拣选任务，交付多视角资产、状态/事件轨迹、约束规则、reference policy与分阶段verifier。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/mk322/DeliveryGym/commit/e7180bf876284d8d88385b38eacceb2a22d57a3f"
+      ]
     },
     {
       "name": "BIABench",
@@ -560,10 +615,10 @@
       "description": "评估 AI Agent 完成真实生物图像分析工作流的 Benchmark，16个任务从已发表研究重建，同时评分最终结果与分析过程。",
       "team": "BIABench 作者团队 / 生物图像分析研究者",
       "direction": "Scientific Agent / Bioimage Analysis / Expert Evaluation",
-      "release_or_update": "2026-09-16：公开代码、任务数据与评测流程；论文复现版本为 v2026-09-10",
-      "heat_score_30d": 94,
-      "heat_reason": "近7天公开，覆盖科学Agent、真实研究工作流、结果+过程双评分和VLM judge；专家数据生产与人工复核门槛高。",
-      "paper": "https://github.com/BIABench/BIABench",
+      "release_or_update": "2026-09-29：补充 arXiv:2609.34274 与论文信息；10月2日删除CITATION.cff、改以README BibTeX引用；近7天未检出提交",
+      "heat_score_30d": 82,
+      "heat_reason": "近30日论文、榜单和成本口径有维护记录；本次窗口内未确认实质更新。专家任务重建与过程评分仍值得关注。",
+      "paper": "https://arxiv.org/abs/2609.34274",
       "website": "https://biabench.github.io/",
       "github": "https://github.com/BIABench/BIABench",
       "dataset": "https://huggingface.co/datasets/BIABench/BIABench",
@@ -578,7 +633,13 @@
       "productization": "可扩展为病理、显微、遥感、材料科学等专业图像分析 Agent Benchmark。",
       "poc": "选择3类生物/工业图像任务各3条，交付输入资产、专家步骤、结果ground truth、过程Checklist、评分器及双专家复核记录。",
       "business_priority": "S",
-      "product_priority": "S"
+      "product_priority": "S",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/BIABench/BIABench/commit/007c9743e2429d6876bcc5653d352b0f5d30660a",
+        "https://github.com/BIABench/BIABench/commit/127aa8bdbef3cb7a3f796f3ed796e38b6347ec08",
+        "https://github.com/BIABench/BIABench/commit/e96a0b90891f4d8d1ed4a6213d1f02282798ae29"
+      ]
     },
     {
       "name": "LTM100",
@@ -586,9 +647,9 @@
       "description": "SK hynix 开源的长期记忆系统多用户负载 Benchmark，通过 add、search 与 add&search 工作流测量吞吐、QPS、延迟、错误率和并发扩展性。",
       "team": "SK hynix",
       "direction": "Agent Memory / Load Benchmark / MCP",
-      "release_or_update": "2026-09-15：公开仓库；当前 v0.4.1，支持 LongMemEval / synthetic 数据、MemMachine / Mem0 以及 REST / MCP 传输",
-      "heat_score_30d": 84,
-      "heat_reason": "近7天发布并快速迭代到v0.4.1；Agent长期记忆、MCP传输和多用户并发是活跃基础设施方向，但当前主要评测性能而非检索质量。",
+      "release_or_update": "2026-10-05：合成语料遵循运行seed；10月4日修正时长截止调度；10月3日新增Supermemory REST后端；当前v0.4.3",
+      "heat_score_30d": 85,
+      "heat_reason": "近7天后端扩展、负载调度和语料可复现性均有官方提交；适合记忆数据、接口适配、性能与质量回归服务分析。",
       "paper": "https://github.com/skhynix/LTM100",
       "website": "https://github.com/skhynix/LTM100",
       "github": "https://github.com/skhynix/LTM100",
@@ -604,8 +665,19 @@
       "productization": "可做企业客服、个人助理、多租户Agent Memory性能与质量联合Benchmark。",
       "poc": "构造100个虚拟用户与3类对话负载，比较REST/MCP在不同并发下的P50/P95/P99、错误率和空结果率，并补充人工质量抽检。",
       "business_priority": "A",
-      "product_priority": "A"
+      "product_priority": "A",
+      "checked_at": "2026-10-09T16:15:30+08:00",
+      "verification_sources": [
+        "https://github.com/skhynix/LTM100/commit/6bb86d1748cd72cd6912948afbed9cbaf88e9e58",
+        "https://github.com/skhynix/LTM100/commit/e670c0d4196961461653e3366d4943d4f6663619",
+        "https://github.com/skhynix/LTM100/commit/8e0dc1e9d30881f99c382fd73514cb918e3c1d56"
+      ]
     }
   ],
-  "schema_version": 3
+  "schema_version": 3,
+  "observation_window": {
+    "start": "2026-10-03",
+    "end": "2026-10-09",
+    "timezone": "Asia/Shanghai"
+  }
 }
