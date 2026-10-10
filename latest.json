@@ -1,7 +1,7 @@
 {
   "title": "热门 Benchmark 跟踪",
-  "report_date": "2026-10-09",
-  "updated_at": "2026-10-09T16:15:30+08:00",
+  "report_date": "2026-10-10",
+  "updated_at": "2026-10-10T09:55:00+08:00",
   "timezone": "Asia/Shanghai",
   "heat_method": "近30日内部跟踪指数（0–100，非官方热度或排名）：按已核验的官方任务、评测协议、环境、榜单与数据更新作定性评分；≥80为重点跟踪。无日期的当前页面状态不视为近7天事件；官网未显示日期或无法完整读取时明确说明。商机、外包环节、产品化与POC均为服务商分析建议，不代表团队已公开采购需求。",
   "summary": {
@@ -16,33 +16,33 @@
       "name": "Terminal-Bench 4",
       "time": "2026-10-09",
       "type": "环境可复现性 / 任务版本 / 榜单提交",
-      "summary": "10月7–9日固定任务容器镜像digest、增加静态检查及任务版本元数据，锁定部分依赖并校验sbt下载；修复uv镜像引用构建，另合入多模型榜单提交。",
-      "impact": "高：任务镜像交付、依赖锁定、版本追踪与回归验证更关键（服务商分析）。",
+      "summary": "10月7–9日固定任务容器镜像digest、补充任务版本元数据与静态校验，锁定依赖并校验sbt下载；10月9日修复digest-only uv镜像引用的托管构建，并合入多模型榜单提交。",
+      "impact": "高：镜像交付、依赖锁定、版本追踪与回归验证持续完善（服务商分析）。",
       "url": "https://github.com/harbor-framework/terminal-bench/commit/209679e34327a78ce8e9bf5300b2f317992863c9"
     },
     {
       "name": "JobBench",
       "time": "2026-10-07",
-      "type": "评分规则澄清 / Harness更新",
-      "summary": "10月3日明确基准分数为逐任务加权分数的等权平均，完整main结果覆盖65任务；10月7日为支持的OpenCode provider添加稳定prompt cache key。",
-      "impact": "高：交付物rubric、完整覆盖率和评分聚合需对齐，降低评测口径差异（服务商分析）。",
-      "url": "https://github.com/Job-Bench/job-bench-eval/commit/c63c0a0827608f81b4dc9dcee7213f8de0fd407b"
+      "type": "Harness 更新",
+      "summary": "为支持的 OpenCode provider 添加稳定 prompt cache key，提升同一任务重复运行时的缓存一致性；窗口内未见新的任务集发布。",
+      "impact": "中：重复运行、缓存配置与评测记录一致性值得纳入Harness QA（服务商分析）。",
+      "url": "https://github.com/Job-Bench/job-bench-eval/commit/660b33a86ed032559df0b2fdc1ad38cf7ceb83f3"
     },
     {
       "name": "Terminal-Bench Science",
-      "time": "2026-10-05",
-      "type": "评审配置 / 试跑策略更新",
-      "summary": "官方调整analyze、review与proposal_review的模型/provider配置，并暂时关闭部分Codex试跑，以应对仓库记录的provider失败。此为贡献评审流水线变化，并非任务规模新增。",
-      "impact": "中高：复现时需记录judge与provider配置，区分环境失败和任务失败（服务商分析）。",
-      "url": "https://github.com/harbor-framework/terminal-bench-science/commit/4c55d75632227a4cb99461ab63c41350ce72f137"
+      "time": "2026-10-07",
+      "type": "评审配置 / 引用元数据",
+      "summary": "10月5日调整analyze、review与proposal_review的judge/provider配置，并暂停部分Codex试跑以处理provider故障；10月7日固定GitHub“Cite this repository”按钮使用的稳定引用。",
+      "impact": "中：复现需记录judge与provider配置，区分环境故障与任务失败；引用元数据变化本身不代表新增任务（服务商分析）。",
+      "url": "https://github.com/harbor-framework/terminal-bench-science/commit/8ef49c8a64cf57f9913755b41ed6a0fe1a667192"
     },
     {
       "name": "LTM100",
-      "time": "2026-10-05",
-      "type": "后端扩展 / 负载调度 / 合成语料",
-      "summary": "10月3日新增Supermemory REST后端；10月4日修正时长截止后新操作的调度；10月5日让合成语料与查询池遵循运行seed，增强不同并发和语料规模实验的可比性。",
-      "impact": "中高：记忆语料、接口适配、截止调度与重复运行QA可形成服务环节（服务商分析）。",
-      "url": "https://github.com/skhynix/LTM100/commit/6bb86d1748cd72cd6912948afbed9cbaf88e9e58"
+      "time": "2026-10-09",
+      "type": "Chat-replay 负载示例 / 轨迹分析",
+      "summary": "新增固定延迟 chat-replay 工作负载示例及分析指南，附1/16/64/256用户的30分钟运行记录、请求并发与突发分布分析；作者说明该示例使用模拟后端，不是LTM服务性能测试。",
+      "impact": "中高：可关注对话负载构造、请求轨迹核验、压测报告和可复现性QA；不要将示例结果解读为真实后端性能（服务商分析）。",
+      "url": "https://github.com/skhynix/LTM100/commit/d856024bf51d0b4d4a9b74564ef5cc1d101627ef"
     }
   ],
   "featured": [
@@ -65,7 +65,7 @@
     {
       "rank": 3,
       "name": "LTM100",
-      "reason": "近7天新增后端并修正负载调度与语料seed，可切入记忆数据、接口适配和性能/质量联合回归。",
+      "reason": "近7天新增chat-replay负载示例及轨迹分析，并改善seed和时长边界复现；需注明示例采用模拟后端。",
       "tag": "Agent Memory / Load Benchmark / MCP",
       "business_priority": "A",
       "product_priority": "A"
@@ -113,7 +113,7 @@
       "poc": "20条中文企业自动化任务，交付初始状态、任务规则、目标状态、verifier 和3次回归。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/zapier/AutomationBench"
       ]
@@ -143,7 +143,7 @@
       "poc": "5个职业×5条任务；每条3–8个异构文件、参考交付物、20+ rubric 和验收记录。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/Job-Bench/job-bench-eval/commit/660b33a86ed032559df0b2fdc1ad38cf7ceb83f3",
         "https://github.com/Job-Bench/job-bench-eval/commit/c63c0a0827608f81b4dc9dcee7213f8de0fd407b",
@@ -175,7 +175,7 @@
       "poc": "15条国产 Office+浏览器跨应用任务，含 VM、资产、mock web、轨迹和 verifier。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/xlang-ai/OSWorld-V2/commit/acdd3493808e716825975b0f0208194bb2faf3c3",
         "https://github.com/xlang-ai/OSWorld-V2/commit/ddf25f03e0e28ea1355032cb531c5e8f249c3db9",
@@ -207,7 +207,7 @@
       "poc": "3类设备×5模型×2量化，测 TTFT/TPS/E2E latency/peak RAM 并交付原始记录。",
       "business_priority": "S",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/Liquid4All/pipette-scores"
       ]
@@ -237,7 +237,7 @@
       "poc": "5个可商用开源repo×6条issue，共30条；交付Docker、tests、reference patch和双工程师复核。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/SWE-bench/SWE-bench"
       ]
@@ -267,7 +267,7 @@
       "poc": "10条高难任务，含Docker、oracle、tests、baseline与5次稳定性运行。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/harbor-framework/terminal-bench/commit/209679e34327a78ce8e9bf5300b2f317992863c9",
         "https://github.com/harbor-framework/terminal-bench/commit/bf4c1255fe70237aecd03a14b0fab9f01afca6b4",
@@ -299,7 +299,7 @@
       "poc": "2个科学方向×5条任务；含容器、数据、reference solution、verifier和双专家QA。",
       "business_priority": "S",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/harbor-framework/terminal-bench-science/commit/8ef49c8a64cf57f9913755b41ed6a0fe1a667192",
         "https://github.com/harbor-framework/terminal-bench-science/commit/4c55d75632227a4cb99461ab63c41350ce72f137",
@@ -331,7 +331,7 @@
       "poc": "30条隐私场景，覆盖 overshare、wrong-recipient、co-location，交付 synthetic data 和 scorer。",
       "business_priority": "A",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/UKPLab/emnlp2026-agentcibench"
       ]
@@ -361,7 +361,7 @@
       "poc": "PPT/Excel/Word各10条，提供源文件、目标状态、rubric和视觉检查项。",
       "business_priority": "A",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/microsoft/ppteval"
       ]
@@ -391,7 +391,7 @@
       "poc": "10条通用terminal workflow，覆盖文档、邮件模拟、网页信息和科学工具。",
       "business_priority": "A",
       "product_priority": "B",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/facebookresearch/TUA-Bench"
       ]
@@ -421,7 +421,7 @@
       "poc": "CRM/电商/预约3站点×5任务，跑Screenshot+DOM+MCP，交付成功率/成本/时间对照。",
       "business_priority": "B",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/nekuda-ai/WindTunnel/commit/5ca8644e23826ebb30108e7bad240b61043bfe67",
         "https://github.com/nekuda-ai/WindTunnel/commit/eac58a1d529f0e19b3c05b5318aa97f64f295e20"
@@ -452,7 +452,7 @@
       "poc": "选1个自有Benchmark，整理dataset card + eval.yaml + 20个模型评测结果，形成可嵌入leaderboard。",
       "business_priority": "A",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/huggingface"
       ]
@@ -482,7 +482,7 @@
       "poc": "3–5个可商用repo×5条复杂任务，交付环境、测试、参考修复与双工程师QA。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/scaleapi/SWE-bench_Pro-os/blob/main/README.md"
       ]
@@ -512,7 +512,7 @@
       "poc": "6条长链任务，每条30–90分钟，交付容器、分阶段评分、reference solution和3次稳定性回归。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/zli12321/LHTB/commit/52381e7d747b03e6f6af1953a4c7ff5dad78112e",
         "https://github.com/zli12321/LHTB/commit/237f18dfe15ca9db7377a0e50b3b35918b064a40",
@@ -544,7 +544,7 @@
       "poc": "20个已披露漏洞，交付可复现环境、PoC验证器、Agent运行记录和人工复核。",
       "business_priority": "S",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/anjanas/cybergym"
       ]
@@ -574,7 +574,7 @@
       "poc": "20个中文短剧/动漫任务，覆盖text-only与reference-conditioned；每条生成2–4个候选视频，交付16项左右rubric、pairwise偏好、角色/镜头一致性标注及QA记录。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://physionlabs.ai/"
       ]
@@ -604,7 +604,7 @@
       "poc": "设计2类商业场景×10条长链配送/拣选任务，交付多视角资产、状态/事件轨迹、约束规则、reference policy与分阶段verifier。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/mk322/DeliveryGym/commit/e7180bf876284d8d88385b38eacceb2a22d57a3f"
       ]
@@ -634,7 +634,7 @@
       "poc": "选择3类生物/工业图像任务各3条，交付输入资产、专家步骤、结果ground truth、过程Checklist、评分器及双专家复核记录。",
       "business_priority": "S",
       "product_priority": "S",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/BIABench/BIABench/commit/007c9743e2429d6876bcc5653d352b0f5d30660a",
         "https://github.com/BIABench/BIABench/commit/127aa8bdbef3cb7a3f796f3ed796e38b6347ec08",
@@ -647,9 +647,9 @@
       "description": "SK hynix 开源的长期记忆系统多用户负载 Benchmark，通过 add、search 与 add&search 工作流测量吞吐、QPS、延迟、错误率和并发扩展性。",
       "team": "SK hynix",
       "direction": "Agent Memory / Load Benchmark / MCP",
-      "release_or_update": "2026-10-05：合成语料遵循运行seed；10月4日修正时长截止调度；10月3日新增Supermemory REST后端；当前v0.4.3",
+      "release_or_update": "2026-10-09：新增固定延迟 chat-replay 工作负载示例、30分钟运行记录与请求并发/突发分析（模拟后端，不是LTM服务性能测试）；10月5日合成语料遵循运行seed；10月4日修正时长截止调度；当前v0.4.3",
       "heat_score_30d": 85,
-      "heat_reason": "近7天后端扩展、负载调度和语料可复现性均有官方提交；适合记忆数据、接口适配、性能与质量回归服务分析。",
+      "heat_reason": "近7天新增chat-replay负载示例与轨迹分析，并完善seed复现和时长边界调度；示例使用模拟后端，不代表真实LTM性能结果。数据服务切入点为负载构造、轨迹核验、接口压测与报告QA（服务商分析）。",
       "paper": "https://github.com/skhynix/LTM100",
       "website": "https://github.com/skhynix/LTM100",
       "github": "https://github.com/skhynix/LTM100",
@@ -661,23 +661,24 @@
       "dependencies": "人工中；系统性能专家高；环境中高。",
       "outsourcing": "对话流构造、记忆写入/检索场景、并发脚本、MCP/REST适配、压测矩阵、异常复核、性能回归和报告QA。",
       "license_risk": "代码为Apache-2.0；LongMemEval、MemMachine、Mem0及实际业务对话数据需分别核验许可与隐私边界。",
-      "service_opportunity": "可切入记忆系统压测数据、并发场景、接口适配和性能回归；若补充检索质量标注，可形成更完整的记忆评测服务。",
+      "service_opportunity": "可切入记忆系统压测数据、对话负载构造、接口适配和性能回归；本周示例使用固定延迟模拟后端，不是SK hynix真实LTM服务的性能结果。若补充检索质量标注，可形成性能与质量联合评测服务。",
       "productization": "可做企业客服、个人助理、多租户Agent Memory性能与质量联合Benchmark。",
-      "poc": "构造100个虚拟用户与3类对话负载，比较REST/MCP在不同并发下的P50/P95/P99、错误率和空结果率，并补充人工质量抽检。",
+      "poc": "构造100个虚拟用户与3类对话负载，比较REST/MCP在不同并发下的P50/P95/P99、错误率和空结果率；明确标注模拟/真实后端，并附原始轨迹及人工质量抽检。",
       "business_priority": "A",
       "product_priority": "A",
-      "checked_at": "2026-10-09T16:15:30+08:00",
+      "checked_at": "2026-10-10T09:55:00+08:00",
       "verification_sources": [
         "https://github.com/skhynix/LTM100/commit/6bb86d1748cd72cd6912948afbed9cbaf88e9e58",
         "https://github.com/skhynix/LTM100/commit/e670c0d4196961461653e3366d4943d4f6663619",
-        "https://github.com/skhynix/LTM100/commit/8e0dc1e9d30881f99c382fd73514cb918e3c1d56"
+        "https://github.com/skhynix/LTM100/commit/8e0dc1e9d30881f99c382fd73514cb918e3c1d56",
+        "https://github.com/skhynix/LTM100/commit/d856024bf51d0b4d4a9b74564ef5cc1d101627ef"
       ]
     }
   ],
   "schema_version": 3,
   "observation_window": {
-    "start": "2026-10-03",
-    "end": "2026-10-09",
+    "start": "2026-10-04",
+    "end": "2026-10-10",
     "timezone": "Asia/Shanghai"
   }
 }
