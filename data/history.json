@@ -47,5 +47,12 @@
     "href": "./?date=2026-10-19",
     "data": "./data/archive/2026-10-19.json",
     "format": "json"
+  },
+  {
+    "date": "2026-10-26",
+    "label": "热门 Benchmark 跟踪 · 2026-10-26（仓库动态核验）",
+    "href": "./?date=2026-10-26",
+    "data": "./data/archive/2026-10-26.json",
+    "format": "json"
   }
 ]
